@@ -2,8 +2,8 @@ public class Paddle extends HardObject{
   int maxY;
   int minY;
   int speed;
-  public Paddle(int x1, int y1, int x2, int y2) {
-    super(x1, y1, x2, y2);
+  public Paddle(int x1, int y1, int x2, int y2, int col) {
+    super(x1, y1, x2, y2, col);
     speed = 5;
   }
   
@@ -16,24 +16,20 @@ public class Paddle extends HardObject{
   }
   
   public void interact(HardObject o) {
-    Direction d;
-    float xShift = 0;
-    float yShift = 0; //<>//
-    if(o instanceof Edge) { //<>//
-      if(myLeftTouching(o)) { //<>//
-        super.shape.translate(1,0);
-      }
-      else if(myRightTouching(o)) {
-        super.shape.translate(-1,0);
-      }
-      else if(myTopTouching(o)) {
+    //Direction d;
+    //float xShift = 0;
+    //float yShift = 0; //<>//
+    if(o instanceof Edge) { //<>// //<>//
+      if(this.myTopTouching(o)) {
+        println("Top Touch: " + o);
         super.shape.translate(0,1);
       }
-      else if(myBottomTouching(o)) {
+      else if(this.myBottomTouching(o)) {
+        println("Bottom Touch: " + o);
         super.shape.translate(0,-1);
       }
       
-      
+    
       //d = isTouching(o);
       //if(d != null) {
       //  if(d.equals(Direction.Right)) { //<>//
@@ -51,6 +47,7 @@ public class Paddle extends HardObject{
       //  super.shape.translate(xShift,yShift);
       //}
     }
+   
   }
   
   public int getPriority() {

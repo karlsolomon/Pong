@@ -4,27 +4,29 @@ public abstract class HardObject{
   /* Corner Orientation
       0    1
       
-      2    3
+      3    2
   */
-  public HardObject(int xLeft, int yTop, int xRight, int yBottom) {
+  public HardObject(int xLeft, int yTop, int xRight, int yBottom, int col) {
     shape = createShape();
+    shape.setFill(col);
     shape.beginShape(); //<>//
     shape.vertex(xLeft, yTop);
     shape.vertex(xRight, yTop);
     shape.vertex(xRight, yBottom);
     shape.vertex(xLeft, yBottom);
-    shape.endShape();    
+    shape.endShape();   
+   
   }
   
-  public Direction isTouching(HardObject o) {
+  public Direction isTouching(HardObject o) { //<>//
     boolean left = myLeftTouching(o);
     boolean right = myRightTouching(o);
     boolean top = myTopTouching(o);
     boolean bottom = myBottomTouching(o);
-    boolean moveLeft = left && (top || bottom) && !right;
-    boolean moveRight = right && (top || bottom) && !left;
-    boolean moveUp = bottom && (left || right) && ! top;
-    boolean moveDown = top && (left || right) && ! bottom;
+    boolean moveLeft = left && !right;
+    boolean moveRight = right && !left;
+    boolean moveUp = bottom && !top;
+    boolean moveDown = top && !bottom;
     
     if(moveLeft)return Direction.Left;
     else if(moveRight) return Direction.Right;
@@ -48,12 +50,12 @@ public abstract class HardObject{
      return shape.getVertex(1).x >= o.shape.getVertex(0).x && shape.getVertex(0).x <= o.shape.getVertex(0).x;
   }
   
-  public boolean myTopTouching(HardObject o) {
-    return shape.getVertex(0).y >= o.shape.getVertex(0).y && shape.getVertex(0).y <= o.shape.getVertex(2).y;
+  public boolean myTopTouching(HardObject o) { //<>//
+    return (shape.getVertex(0).y >= o.shape.getVertex(0).y && shape.getVertex(0).y <= o.shape.getVertex(2).y) && (shape.getVertex(0).x >= o.shape.getVertex(0).x && shape.getVertex(1).x <= o.shape.getVertex(1).x);
   }
   
   public boolean myBottomTouching(HardObject o) {
-    return shape.getVertex(2).y <= o.shape.getVertex(2).y && shape.getVertex(2).y >= o.shape.getVertex(0).y;
+    return (shape.getVertex(2).y <= o.shape.getVertex(2).y && shape.getVertex(2).y >= o.shape.getVertex(0).y) && (shape.getVertex(0).x >= o.shape.getVertex(0).x && shape.getVertex(1).x <= o.shape.getVertex(1).x);
   }
 }
 

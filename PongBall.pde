@@ -1,8 +1,10 @@
 public class PongBall extends HardObject{
   int radius;
   PVector velocity;
-  public PongBall(int x, int y, int radius) {
-    super(x-radius, y-radius, x+radius, y+radius);
+  public PongBall(int x, int y, int radius, int col) {
+    super(x-radius, y-radius, x+radius, y+radius, col);
+    float vx = random(0,1);
+    float vy = random(0,1);
     velocity = new PVector(0,0);
   }
   
