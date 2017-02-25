@@ -15,30 +15,10 @@ boolean[] keys = new boolean[4]; // {w,s,up,down} //<>// //<>//
 
 
 
+
 void setup() {
-  
-  
   size(500,500);
-  b = new PongBall(width/2, height/2, 5, 255);
-  top = new Edge(EdgeType.Hard, 0, 0, width, 9, 255);
-  bottom = new Edge(EdgeType.Hard, 0, height-9, width, height,255);
-  left = new Edge(EdgeType.Soft, 0, 0, 3, height,200);
-  right = new Edge(EdgeType.Soft, width-3, 0, width, height,200);
-  player1 = new Paddle(10,10,30,height/2,255);
-  player2 = new Paddle(width-30,10,width-10,height/2,255);
-  actors = new ArrayList<HardObject>();
-  movingActors = new ArrayList<HardObject>();
-  actors.add(b);
-  actors.add(top);
-  actors.add(bottom);
-  actors.add(left);
-  actors.add(right);
-  actors.add(player1);
-  actors.add(player2);
-  movingActors.add(b);
-  movingActors.add(player1);
-  movingActors.add(player2);
- 
+  startup();
 }
 
 void draw() {
@@ -52,9 +32,6 @@ void draw() {
   background(0);
   for(HardObject o : movingActors) {
     o.display();
-  }
-  for(HardObject h : actors) {
-    h.display();
   }
 }
 
@@ -84,6 +61,7 @@ void keyPressed() {
       keys[1] = true;
     }
   }
+  
 }
 
 void keyReleased() {
@@ -103,4 +81,27 @@ void keyReleased() {
       keys[1] = false;
     }
   }
+}
+
+void startup() { 
+  
+  b = new PongBall(width/2, height/2, 5, 255);
+  top = new Edge(EdgeType.Hard, 0, 0, width, 9, 255);
+  bottom = new Edge(EdgeType.Hard, 0, height-9, width, height,255);
+  left = new Edge(EdgeType.Soft, 0, 0, 3, height,200);
+  right = new Edge(EdgeType.Soft, width-3, 0, width, height,200);
+  player1 = new Paddle(10,height/2-20,30,height/2+20,255);
+  player2 = new Paddle(width-30,height/2-20,width-10,height/2 + 20,255);
+  actors = new ArrayList<HardObject>();
+  movingActors = new ArrayList<HardObject>();
+  actors.add(b);
+  actors.add(top);
+  actors.add(bottom);
+  actors.add(left);
+  actors.add(right);
+  actors.add(player1);
+  actors.add(player2);
+  movingActors.add(b);
+  movingActors.add(player1);
+  movingActors.add(player2);
 }

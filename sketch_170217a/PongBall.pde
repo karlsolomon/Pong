@@ -1,11 +1,18 @@
 public class PongBall extends HardObject{
   int radius;
   PVector velocity;
+  float r;
+  float coeff;
+  
+  private final float limit = .5;
+
   public PongBall(int x, int y, int radius, int col) {
     super(x-radius, y-radius, x+radius, y+radius, col);
-    float vx = random(0.5,1);
-    float vy = random(0,1);
+    
+    float vx = fetchSign() * random(1,2);
+    float vy = fetchSign() * random(.5,1);
     velocity = new PVector(vx,vy);
+
   }
   
   public void speedUp() {
@@ -36,10 +43,22 @@ public class PongBall extends HardObject{
       
     }
   }
+
+  private float fetchSign() {
+   r = random(0,1); 
+   if (r < limit) { 
+      coeff = -1; 
+   }  else { 
+        coeff = 1;
+   }
+   return coeff;
+  }
   
   public int getPriority() {
     return 2;
   }
-  
+  public boolean gameStatus() {
+    return true;
+  }
   
 }
