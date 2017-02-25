@@ -3,6 +3,7 @@ public class PongBall extends HardObject{
   PVector velocity;
   float r;
   float coeff;
+  boolean gameStatus;
   
   private final float limit = .5;
 
@@ -12,7 +13,7 @@ public class PongBall extends HardObject{
     float vx = fetchSign() * random(1,2);
     float vy = fetchSign() * random(.5,1);
     velocity = new PVector(vx,vy);
-
+    gameStatus = true;
   }
   
   public void speedUp() {
@@ -28,19 +29,20 @@ public class PongBall extends HardObject{
   
   public void interact(HardObject o) {
     Direction d;
-    if(o.getPriority() < this.getPriority()) {
-       d = isTouching(o); //<>//
-       if(d != null) {
+    d = isTouching(o);
+    if (d!= null) {
+      if(o.getPriority() < this.getPriority()) {        //<>//
          if(d.equals(Direction.Left) || d.equals(Direction.Right)) {
            velocity.x *= -1;
          }
          else if(d.equals(Direction.Up) || d.equals(Direction.Down)) {
            velocity.y *= -1;
          }
-       }
     }
-    else {
-      
+      else {
+       println("It is now touching the soft edge -> GAMEOVER");
+       gameStatus = false;
+       }
     }
   }
 
@@ -58,7 +60,10 @@ public class PongBall extends HardObject{
     return 2;
   }
   public boolean gameStatus() {
-    return true;
+    return gameStatus;
   }
-  
+  public boolean gameStatus(boolean newStatus) {
+   gameStatus = newStatus; 
+   return gameStatus;
+  }
 }
