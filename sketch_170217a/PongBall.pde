@@ -2,7 +2,7 @@ public class PongBall extends HardObject{
   int radius;
   PVector velocity;
   PVector position; //top left of ball
-  float r;
+  float radius;
   float coeff;
   boolean gameStatus;
   
@@ -13,6 +13,7 @@ public class PongBall extends HardObject{
     
     float vx = fetchSign() * random(1,2);
     float vy = fetchSign() * random(.5,1);
+    this.radius = radius;
     velocity = new PVector(vx,vy);
     position = new PVector(x,y);
     gameStatus = true;
@@ -34,7 +35,7 @@ public class PongBall extends HardObject{
   public void interact(HardObject o) {
     Direction d;
     d = isTouching(o);
-    if (d!= null) {
+    if (d!= null) { //<>//
       if(o.getPriority() < this.getPriority()) {        //<>//
          if(d.equals(Direction.Left) || d.equals(Direction.Right)) {
            velocity.x *= -1;
@@ -65,6 +66,10 @@ public class PongBall extends HardObject{
   }
   public PVector getVelocity() {
     return this.velocity;
+  }
+  
+  public float getRadius() {
+    return this.radius;
   }
   
   public int getPriority() {
