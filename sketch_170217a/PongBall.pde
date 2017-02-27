@@ -1,6 +1,7 @@
 public class PongBall extends HardObject{
   int radius;
   PVector velocity;
+  PVector position; //top left of ball
   float r;
   float coeff;
   boolean gameStatus;
@@ -13,6 +14,7 @@ public class PongBall extends HardObject{
     float vx = fetchSign() * random(1,2);
     float vy = fetchSign() * random(.5,1);
     velocity = new PVector(vx,vy);
+    position = new PVector(x,y);
     gameStatus = true;
   }
   
@@ -54,6 +56,13 @@ public class PongBall extends HardObject{
         coeff = 1;
    }
    return coeff;
+  }
+  
+  public PVector getPosition() {
+    return this.position;
+  }
+  public PVector getVelocity() {
+    return this.velocity;
   }
   
   public int getPriority() {
