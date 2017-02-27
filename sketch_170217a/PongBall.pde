@@ -25,6 +25,8 @@ public class PongBall extends HardObject{
   
   @Override
   public void display() {
+    position.x += velocity.x;
+    position.y += velocity.y;
     super.translate(velocity.x, velocity.y);
     super.display();
   }
