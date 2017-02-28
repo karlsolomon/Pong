@@ -12,7 +12,7 @@ public abstract class HardObject{
   public HardObject(float xLeft, float yTop, float xRight, float yBottom, int col) {
     shape = createShape();
     shape.setFill(col);
-    shape.beginShape(); //<>// //<>//
+    shape.beginShape();  //<>//
     shape.vertex(xLeft, yTop);
     shape.vertex(xRight, yTop);
     shape.vertex(xRight, yBottom);
@@ -42,7 +42,7 @@ public abstract class HardObject{
     updateVertices(x, y);
   }
   
-  public Direction isTouching(HardObject o) { //<>// //<>//
+  public Direction isTouching(HardObject o) {  //<>//
     boolean left = myLeftTouching(o);
     boolean right = myRightTouching(o);
     boolean top = myTopTouching(o);
@@ -84,14 +84,14 @@ public abstract class HardObject{
      return isTouching;
   }
   
-  public boolean myTopTouching(HardObject o) { //<>//
+  public boolean myTopTouching(HardObject o) { 
     boolean isTouching = (getTop() >= o.getTop() && getTop() <= o.getBottom()) && (getLeft() >= o.getLeft() && getRight() <= o.getRight());
     return isTouching;
 }
   
   public boolean myBottomTouching(HardObject o) {
     return (getBottom() <= o.getBottom() && getBottom() >= o.getTop()) && (getLeft() >= o.getLeft() && getRight() <= o.getRight());
-  } //<>//
+  }  //<>//
 }
 
 public enum Direction {Right, Left, Up, Down};

@@ -12,8 +12,8 @@ PVector downUnit = new PVector(0,1);
 PVector leftUnit = new PVector(-1,0);
 PVector rightUnit = new PVector(1,0);
 ArrayList<HardObject> actors;
-ArrayList<HardObject> movingActors; //<>//
-boolean[] keys = new boolean[4]; // {w,s,up,down} //<>// //<>//
+ArrayList<HardObject> movingActors;  //<>//
+boolean[] keys = new boolean[4]; // {w,s,up,down} 
 boolean newGame;
 
 
@@ -23,15 +23,16 @@ void setup() {
   size(500,500);
   startup();
   colorMode(RGB,255,255,255,100);
+  SoundEffects.initialize(this);
 }
 
 void draw() {
   if (b.gameStatus()) {
     moveKeys();
-    for(HardObject h : movingActors) {
-      for(HardObject o : actors) { //<>//
+    for(HardObject h : movingActors) { //<>//
+      for(HardObject o : actors) {
         if(h.equals(o)) continue; // don't interact w/ self
-        h.interact(o); //<>//
+        h.interact(o);
       }
     }  
     background(255);
