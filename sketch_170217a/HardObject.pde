@@ -44,11 +44,19 @@ public abstract class HardObject{
   
   public PVector isTouching(HardObject o) { //<>//
     PVector p = new PVector(1,1);
-    if(myLeftTouching(o) || myRightTouching(o)) {
+    if(myLeftTouching(o) ^ myRightTouching(o)) {
       p.x = -1;
     }
-    if(myTopTouching(o) || myBottomTouching(o)) {
+    if(myTopTouching(o) ^ myBottomTouching(o)) {
       p.y = -1;
+    }
+    if(p.x == -1 && p.y == -1) {
+      if(getXOverlap(o) < getYOverlap(o)) {
+        p.y = 1;
+      }
+      else {
+        p.x = 1;
+      }
     }
     return p;
   }
@@ -84,10 +92,10 @@ public abstract class HardObject{
   }  //<>//
   
   private boolean leftOverlap(HardObject o) {
-    return getLeft() <= o.getRight() && getRight() >= o.getRight();
+    return getLeft() >= o.getLeft() && getLeft() <= o.getRight();
   }
   private boolean rightOverlap(HardObject o) {
-    return getRight() >= o.getLeft() && getLeft() <= o.getLeft();
+    return getRight() >= o.getLeft() && getRight() <= o.getRight();
   }
   private boolean topOverlap(HardObject o) {
     return getTop() >= o.getTop() && getTop() <= o.getBottom();
@@ -96,6 +104,12 @@ public abstract class HardObject{
     return getBottom() <= o.getBottom() && getBottom() >= o.getTop();
   }
   
+  private float getXOverlap(HardObject o) {
+    return max(getLeft() - o.getRight(), getRight() - o.getLeft());
+  }
+  private float getYOverlap(HardObject o) {
+    return max(getBottom() - o.getTop(), getTop() - o.getBottom());
+  }
   
 }
 
