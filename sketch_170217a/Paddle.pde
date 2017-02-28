@@ -17,27 +17,29 @@ public class Paddle extends HardObject{
   
   public void interact(HardObject o) {  //<>//
     if(o instanceof Edge) { //<>//
-      if(this.myTopTouching(o)) {
-  
+      if(this.myTopTouching(o)) {  
         super.translate(0,10);
-        SoundEffects.paddleShake();
+        paddleShake();
       }
       else if(this.myBottomTouching(o)) {
         super.translate(0,-10);
-        SoundEffects.paddleShake();
-      }
-      else if(this.myLeftTouching(o)) {
-
-        super.translate(10,0);
-      }
-      else if(this.myRightTouching(o)) {
-
-        super.translate(-10,0); //<>//
-      } 
+        paddleShake();
+      } //<>//
     } 
   }
   
   public int getPriority() {
     return 1;
+  }
+  
+  private void paddleShake() {
+    SoundEffects.paddleShake();
+    pushMatrix();
+    PVector centerPoint = super.center();
+    translate(centerPoint.x, centerPoint.y);
+    super.shape.rotate(PI/20);
+    super.display();
+    translate(-centerPoint.x, -centerPoint.y);
+    popMatrix();
   }
 }

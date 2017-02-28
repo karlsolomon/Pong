@@ -17,6 +17,7 @@ class Gameover {
   textSize(y/20); 
   sw = textWidth(restart); 
   text(restart, (x - sw)/2, y/2 + y/18);
+  noLoop();
  }
  
 }
