@@ -34,19 +34,14 @@ public class PongBall extends HardObject{
   }  //<>//
   
   public void interact(HardObject o) {
-    Direction d;
+    PVector d;
     d = isTouching(o);
-    if (d!= null) { 
+    if (d.x != 1 || d.y != 1) { 
       if(o.getPriority() < this.getPriority()) {
-         if(d.equals(Direction.Left) || d.equals(Direction.Right)) {
-           velocity.x *= -1;
-           SoundEffects.ballBounce();
-         }
-         else if(d.equals(Direction.Up) || d.equals(Direction.Down)) {
-           velocity.y *= -1;
-           SoundEffects.ballBounce();
-         }
-    }
+       velocity.x *= d.x;
+       velocity.y *= d.y;
+       SoundEffects.ballBounce();
+      }
       else {
        SoundEffects.gameOver();
        gameStatus = false;

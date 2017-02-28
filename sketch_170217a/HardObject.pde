@@ -42,21 +42,15 @@ public abstract class HardObject{
     updateVertices(x, y);
   }
   
-  public Direction isTouching(HardObject o) {  //<>//
-    boolean left = myLeftTouching(o);
-    boolean right = myRightTouching(o);
-    boolean top = myTopTouching(o);
-    boolean bottom = myBottomTouching(o);
-    boolean moveLeft = left && !right;
-    boolean moveRight = right && !left;
-    boolean moveUp = bottom && !top;
-    boolean moveDown = top && !bottom;
-    
-    if(moveLeft)return Direction.Left;
-    else if(moveRight) return Direction.Right;
-    else if(moveDown) return Direction.Down;
-    else if(moveUp) return Direction.Up;
-    else return null;
+  public PVector isTouching(HardObject o) { //<>//
+    PVector p = new PVector(1,1);
+    if(myLeftTouching(o) || myRightTouching(o)) {
+      p.x = -1;
+    }
+    if(myTopTouching(o) || myBottomTouching(o)) {
+      p.y = -1;
+    }
+    return p;
   }
   
   public abstract void interact(HardObject o);
@@ -74,24 +68,35 @@ public abstract class HardObject{
   }
   
   public boolean myLeftTouching(HardObject o) {
-    boolean isTouching = (getLeft() <= o.getRight() && getRight() >= o.getRight()) && (getTop() >= o.getTop() && getBottom() <= o.getBottom()) ;
-
-    return isTouching;
+    return leftOverlap(o) && (bottomOverlap(o) || topOverlap(o));
   }
   
   public boolean myRightTouching(HardObject o) {
-     boolean isTouching = (getRight() >= o.getLeft() && getLeft() <= o.getLeft()) && (getTop() >= o.getTop() && getBottom() <= o.getBottom()) ;
-     return isTouching;
+     return rightOverlap(o) && (bottomOverlap(o) || topOverlap(o));
   }
   
   public boolean myTopTouching(HardObject o) { 
-    boolean isTouching = (getTop() >= o.getTop() && getTop() <= o.getBottom()) && (getLeft() >= o.getLeft() && getRight() <= o.getRight());
-    return isTouching;
+    return topOverlap(o) && (leftOverlap(o) || rightOverlap(o));
 }
   
   public boolean myBottomTouching(HardObject o) {
-    return (getBottom() <= o.getBottom() && getBottom() >= o.getTop()) && (getLeft() >= o.getLeft() && getRight() <= o.getRight());
+    return bottomOverlap(o) && (leftOverlap(o) || rightOverlap(o));
   }  //<>//
+  
+  private boolean leftOverlap(HardObject o) {
+    return getLeft() <= o.getRight() && getRight() >= o.getRight();
+  }
+  private boolean rightOverlap(HardObject o) {
+    return getRight() >= o.getLeft() && getLeft() <= o.getLeft();
+  }
+  private boolean topOverlap(HardObject o) {
+    return getTop() >= o.getTop() && getTop() <= o.getBottom();
+  }
+  private boolean bottomOverlap(HardObject o) {
+    return getBottom() <= o.getBottom() && getBottom() >= o.getTop();
+  }
+  
+  
 }
 
 public enum Direction {Right, Left, Up, Down};
