@@ -12,7 +12,7 @@ PVector downUnit = new PVector(0,1);
 PVector leftUnit = new PVector(-1,0);
 PVector rightUnit = new PVector(1,0);
 ArrayList<HardObject> actors;
-ArrayList<HardObject> movingActors;  //<>//
+ArrayList<HardObject> movingActors;  //<>// //<>//
 boolean[] keys = new boolean[4]; // {w,s,up,down} 
 boolean newGame;
 
@@ -22,20 +22,20 @@ boolean newGame;
 void setup() {
   size(500,500);
   startup();
-  colorMode(RGB,255,255,255,100);
+  colorMode(HSB,360,100,100,100);
   SoundEffects.initialize(this);
 }
 
 void draw() {
   if (b.gameStatus()) {
     moveKeys();
-    for(HardObject h : movingActors) { //<>//
+    for(HardObject h : movingActors) { //<>// //<>//
       for(HardObject o : actors) {
         if(h.equals(o)) continue; // don't interact w/ self
         h.interact(o);
       }
     }  
-    background(255);
+    background(360);
     bTrail.display();
     for(HardObject o : movingActors) {
       o.display();
@@ -45,7 +45,7 @@ void draw() {
   else {
     if (newGame) startup();
     else {
-    background(255);
+    background(360);
     end.display();
     }
   }
@@ -108,8 +108,8 @@ void startup() {
   bTrail = new BallTrail(b);
   top = new Edge(EdgeType.Hard, 0, 0, width, 9, 255);
   bottom = new Edge(EdgeType.Hard, 0, height-9, width, height,255);
-  left = new Edge(EdgeType.Soft, 0, 0, 3, height,200);
-  right = new Edge(EdgeType.Soft, width-3, 0, width, height,200);
+  left = new Edge(EdgeType.Soft, -50, 0, 3, height,200);
+  right = new Edge(EdgeType.Soft, width-3, 0, width+50, height,200);
   player1 = new Paddle(10,height/2-20,30,height/2+20,0);
   player2 = new Paddle(width-30,height/2-20,width-10,height/2 + 20,0);
   newGame = false;
