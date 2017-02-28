@@ -43,7 +43,6 @@ public class PongBall extends HardObject{
        SoundEffects.ballBounce();
       }
       else {
-       SoundEffects.gameOver();
        gameStatus = false;
        }
     }

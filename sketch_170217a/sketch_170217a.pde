@@ -97,6 +97,7 @@ void keyReleased() {
     }
     else if (key == 'n' && !b.gameStatus()) {
      newGame = b.gameStatus(true); 
+     loop();
     }
   }
 }

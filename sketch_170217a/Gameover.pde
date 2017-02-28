@@ -9,6 +9,7 @@ class Gameover {
    this.y = y; 
  }
  public void display() {
+  SoundEffects.gameOver();
   fill(0);
   textSize(y/10);
   sw = textWidth(gameover); 
