@@ -3,7 +3,7 @@ public class BallTrail {
   private PVector pos; 
   private PVector v; 
   private float r;
-  int col;
+  color col;
   int numSqs;
 
   private PongBall b;
@@ -12,7 +12,7 @@ public class BallTrail {
     this.b = ball;
     this.r = b.getRadius();
     this.col = b.getColor(); 
-    numSqs = 8;
+    numSqs = 10;
  
      
   }
@@ -25,7 +25,7 @@ public class BallTrail {
     v = b.getVelocity();
     col = b.getColor();
   }
-  private void createSquare(PVector position, PVector velocity, float radius, int col) {
+  private void createSquare(PVector position, PVector velocity, float radius, color col) {
    float xPos = position.x;
    float yPos = position.y;
    float xVel = velocity.x; 

@@ -1,11 +1,11 @@
 public class Edge extends HardObject{
   EdgeType e;
   int[] area = new int[4];
-  public Edge(EdgeType e, int x1, int y1, int x2, int y2, int col)  {
+  public Edge(EdgeType e, int x1, int y1, int x2, int y2, color col)  {
     super(x1,y1,x2,y2, col);
     this.e = e;
   }
-  
+
   public void interact(HardObject o) {
     //DO Nothing
   }

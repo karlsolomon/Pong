@@ -9,10 +9,11 @@ public abstract class HardObject{
       
       3    2
   */
-  public HardObject(float xLeft, float yTop, float xRight, float yBottom, int col) {
+  public HardObject(float xLeft, float yTop, float xRight, float yBottom, color col) {
     shape = createShape();
     shape.setFill(col);
-    shape.beginShape();  //<>//
+    shape.beginShape();  //<>// //<>//
+    shape.noStroke();
     shape.vertex(xLeft, yTop);
     shape.vertex(xRight, yTop);
     shape.vertex(xRight, yBottom);
@@ -41,7 +42,7 @@ public abstract class HardObject{
     shape.translate(x,y);
     updateVertices(x, y);
   }
-  
+   //<>//
   public PVector isTouching(HardObject o) { //<>//
     PVector p = new PVector(1,1);
     if(myLeftTouching(o) ^ myRightTouching(o)) {
@@ -90,7 +91,7 @@ public abstract class HardObject{
   public boolean myBottomTouching(HardObject o) {
     return bottomOverlap(o) && (leftOverlap(o) || rightOverlap(o));
   }  //<>//
-  
+   //<>//
   private boolean leftOverlap(HardObject o) {
     return getLeft() >= o.getLeft() && getLeft() <= o.getRight();
   }

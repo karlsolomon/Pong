@@ -4,32 +4,36 @@ public class PongBall extends HardObject{
   PVector position; //top left of ball
   float radius;
   float coeff;
-  int col;
+  float coeffX;
+  float coeffY;
+  color col;
   boolean gameStatus;
+  int hue;
   
   private final float limit = .5;
 
-  public PongBall(int x, int y, int radius, int col) {
+  public PongBall(int x, int y, int radius, color col) {
     super(x-radius, y-radius, x+radius, y+radius, col);
-    float vx = fetchSign() * random(1,2);
-    float vy = fetchSign() * random(.5,1);
+    coeffX = fetchSign();
+    coeffY = fetchSign();
+    float vx = random(1,2);
+    float vy = random(.5,1);
     this.col = col;
     this.radius = radius;
-    velocity = new PVector(vx,vy);
+    velocity = new PVector(coeffX*vx,coeffY*vy);
     position = new PVector(x,y);
     gameStatus = true;
-  }
-  
-  public void speedUp() {
-    velocity.x += 1;
-    velocity.y += random(0,1);
+    coeffX = 1;
+    coeffY = 1;
+
+    
   }
   
   @Override
   public void display() {
-    position.x += velocity.x;
-    position.y += velocity.y;
-    super.translate(velocity.x, velocity.y);
+    position.x += coeffX*velocity.x; //<>//
+    position.y += coeffY*velocity.y;
+    super.translate(coeffX*velocity.x, coeffY*velocity.y);
     super.display();
   }  //<>//
   
@@ -38,9 +42,12 @@ public class PongBall extends HardObject{
     d = isTouching(o);
     if (d.x != 1 || d.y != 1) { 
       if(o.getPriority() < this.getPriority()) {
-       velocity.x *= d.x;
-       velocity.y *= d.y;
+       coeffX *= d.x;
+       coeffY *= d.y;
        SoundEffects.ballBounce();
+       hue = (int)random(50,300);
+       col = color(hue,100,100);
+       shape.setFill(col);
       }
       else {
        gameStatus = false;
@@ -62,13 +69,13 @@ public class PongBall extends HardObject{
     return this.position;
   }
   public PVector getVelocity() {
-    return this.velocity;
+    return new PVector(coeffX*velocity.x,coeffY*velocity.y);
   }
   
   public float getRadius() {
     return 2*this.radius;
   }
-  public int getColor() {
+  public color getColor() {
     return this.col; 
   }
   
