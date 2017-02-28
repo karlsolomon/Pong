@@ -1,5 +1,6 @@
 Gameover end;
 PongBall b;// = new PongBall();
+BallTrail bTrail;
 Edge top;// = new Edge();
 Edge bottom;// = new Edge();
 Edge left;// = new Edge();
@@ -11,7 +12,7 @@ PVector downUnit = new PVector(0,1);
 PVector leftUnit = new PVector(-1,0);
 PVector rightUnit = new PVector(1,0);
 ArrayList<HardObject> actors;
-ArrayList<HardObject> movingActors;
+ArrayList<HardObject> movingActors; //<>//
 boolean[] keys = new boolean[4]; // {w,s,up,down} //<>// //<>//
 boolean newGame;
 
@@ -21,26 +22,29 @@ boolean newGame;
 void setup() {
   size(500,500);
   startup();
+  colorMode(RGB,255,255,255,100);
 }
 
 void draw() {
   if (b.gameStatus()) {
     moveKeys();
     for(HardObject h : movingActors) {
-      for(HardObject o : actors) {
+      for(HardObject o : actors) { //<>//
         if(h.equals(o)) continue; // don't interact w/ self
         h.interact(o); //<>//
       }
     }  
-    background(0);
+    background(255);
+    bTrail.display();
     for(HardObject o : movingActors) {
       o.display();
     }
+    
   }
   else {
     if (newGame) startup();
     else {
-    background(0);
+    background(255);
     end.display();
     }
   }
@@ -90,7 +94,7 @@ void keyReleased() {
     else if (key == 's') {
       keys[1] = false;
     }
-    else if (key == 'n') {
+    else if (key == 'n' && !b.gameStatus()) {
      newGame = b.gameStatus(true); 
     }
   }
@@ -98,13 +102,14 @@ void keyReleased() {
 
 void startup() { 
   end = new Gameover(width,height);
-  b = new PongBall(width/2, height/2, 5, 255);
+  b = new PongBall(width/2, height/2, 5, 0);
+  bTrail = new BallTrail(b);
   top = new Edge(EdgeType.Hard, 0, 0, width, 9, 255);
   bottom = new Edge(EdgeType.Hard, 0, height-9, width, height,255);
   left = new Edge(EdgeType.Soft, 0, 0, 3, height,200);
   right = new Edge(EdgeType.Soft, width-3, 0, width, height,200);
-  player1 = new Paddle(10,height/2-20,30,height/2+20,255);
-  player2 = new Paddle(width-30,height/2-20,width-10,height/2 + 20,255);
+  player1 = new Paddle(10,height/2-20,30,height/2+20,0);
+  player2 = new Paddle(width-30,height/2-20,width-10,height/2 + 20,0);
   newGame = false;
   actors = new ArrayList<HardObject>();
   movingActors = new ArrayList<HardObject>();

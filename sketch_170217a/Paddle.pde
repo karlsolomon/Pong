@@ -15,25 +15,24 @@ public class Paddle extends HardObject{
     this.speed += 1;
   }
   
-  public void interact(HardObject o) { //<>//
-    if(o instanceof Edge) { //<>//
+  public void interact(HardObject o) { //<>// //<>//
+    if(o instanceof Edge) { //<>// //<>//
       if(this.myTopTouching(o)) {
-        println("Top Touch: " + o);
+  
         super.translate(0,10);
       }
       else if(this.myBottomTouching(o)) {
-        println("Bottom Touch: " + o);
         super.translate(0,-10);
       }
       else if(this.myLeftTouching(o)) {
-        println("Left Touch: " + o);
+
         super.translate(10,0);
       }
       else if(this.myRightTouching(o)) {
-        println("Right Touch: " + o);
+
         super.translate(-10,0);
       } //<>//
-    }
+    } //<>//
   }
   
   public int getPriority() {

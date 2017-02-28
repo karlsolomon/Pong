@@ -1,18 +1,19 @@
 public class PongBall extends HardObject{
-  int radius;
+  float r;
   PVector velocity;
   PVector position; //top left of ball
   float radius;
   float coeff;
+  int col;
   boolean gameStatus;
   
   private final float limit = .5;
 
   public PongBall(int x, int y, int radius, int col) {
     super(x-radius, y-radius, x+radius, y+radius, col);
-    
     float vx = fetchSign() * random(1,2);
     float vy = fetchSign() * random(.5,1);
+    this.col = col;
     this.radius = radius;
     velocity = new PVector(vx,vy);
     position = new PVector(x,y);
@@ -30,13 +31,13 @@ public class PongBall extends HardObject{
     position.y += velocity.y;
     super.translate(velocity.x, velocity.y);
     super.display();
-  }
+  } //<>//
   
   public void interact(HardObject o) {
     Direction d;
     d = isTouching(o);
-    if (d!= null) { //<>//
-      if(o.getPriority() < this.getPriority()) {        //<>//
+    if (d!= null) { 
+      if(o.getPriority() < this.getPriority()) {
          if(d.equals(Direction.Left) || d.equals(Direction.Right)) {
            velocity.x *= -1;
          }
@@ -45,7 +46,6 @@ public class PongBall extends HardObject{
          }
     }
       else {
-       println("It is now touching the soft edge -> GAMEOVER");
        gameStatus = false;
        }
     }
@@ -69,7 +69,10 @@ public class PongBall extends HardObject{
   }
   
   public float getRadius() {
-    return this.radius;
+    return 2*this.radius;
+  }
+  public int getColor() {
+    return this.col; 
   }
   
   public int getPriority() {

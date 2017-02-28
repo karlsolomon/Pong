@@ -12,7 +12,7 @@ public abstract class HardObject{
   public HardObject(float xLeft, float yTop, float xRight, float yBottom, int col) {
     shape = createShape();
     shape.setFill(col);
-    shape.beginShape(); //<>//
+    shape.beginShape(); //<>// //<>//
     shape.vertex(xLeft, yTop);
     shape.vertex(xRight, yTop);
     shape.vertex(xRight, yBottom);
@@ -42,7 +42,7 @@ public abstract class HardObject{
     updateVertices(x, y);
   }
   
-  public Direction isTouching(HardObject o) { //<>//
+  public Direction isTouching(HardObject o) { //<>// //<>//
     boolean left = myLeftTouching(o);
     boolean right = myRightTouching(o);
     boolean top = myTopTouching(o);
@@ -75,34 +75,23 @@ public abstract class HardObject{
   
   public boolean myLeftTouching(HardObject o) {
     boolean isTouching = (getLeft() <= o.getRight() && getRight() >= o.getRight()) && (getTop() >= o.getTop() && getBottom() <= o.getBottom()) ;
-    if(isTouching) {
-        print("my left = " + getLeft());
-        print("their left = " + o.getLeft());
-     }  
+
     return isTouching;
   }
   
   public boolean myRightTouching(HardObject o) {
      boolean isTouching = (getRight() >= o.getLeft() && getLeft() <= o.getLeft()) && (getTop() >= o.getTop() && getBottom() <= o.getBottom()) ;
-     if(isTouching) {
-        print("my right = " + getRight());
-        print("their right = " + o.getRight());
-     }  
      return isTouching;
   }
   
   public boolean myTopTouching(HardObject o) { //<>//
     boolean isTouching = (getTop() >= o.getTop() && getTop() <= o.getBottom()) && (getLeft() >= o.getLeft() && getRight() <= o.getRight());
-    if(isTouching) {
-        print("my top = " + getTop());
-        print("their top = " + o.shape.getVertex(0));
-     }  
-     return isTouching;
+    return isTouching;
 }
   
   public boolean myBottomTouching(HardObject o) {
     return (getBottom() <= o.getBottom() && getBottom() >= o.getTop()) && (getLeft() >= o.getLeft() && getRight() <= o.getRight());
-  }
+  } //<>//
 }
 
 public enum Direction {Right, Left, Up, Down};

@@ -9,7 +9,7 @@ class Gameover {
    this.y = y; 
  }
  public void display() {
-  fill(255);
+  fill(0);
   textSize(y/10);
   sw = textWidth(gameover); 
   text(gameover, (x - sw)/2,y/2);
