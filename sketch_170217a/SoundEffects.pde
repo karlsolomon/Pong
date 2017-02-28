@@ -1,35 +1,26 @@
 import ddf.minim.*;
-AudioPlayer gameOver;
-AudioPlayer ballBounce;
-AudioPlayer paddleShake;
-Minim minim;
 
-public class SoundEffects {
-  private SoundEffects instance = null;
+static AudioPlayer player;
+static Minim minim;
+
+public static class SoundEffects {
   
-  private SoundEffects() {
-    gameOver = minim.loadFile("GameOver.mp3", 2048);
-    ballBounce = minim.loadFile("BallBounce.mp3", 2048);
-    paddleShake = minim.loadFile("PaddleShake.mp3", 2048);
+  public static void initialize(PApplet sketch) {
+    minim = new Minim(sketch);
   }
   
-  public SoundEffects getInstance() {
-    if(instance == null) {
-      instance = new SoundEffects();
-    }
-    return instance;
+  public static void gameOver() {    
+    player = minim.loadFile("GameOver.mp3", 2048);
+    player.play();
   }
   
-  public void gameOver() {
-    gameOver.play();
+  public static void paddleShake() {
+    player = minim.loadFile("PaddleShake.mp3", 2048);
+    player.play();
   }
   
-  public void paddleShake() {
-    paddleShake.play();
-  }
-  
-  public void ballBounce() {
-    ballBounce.play();
-  } 
-  
+  public static void ballBounce() {
+    player = minim.loadFile("BallBounce.mp3", 2048);
+    player.play();
+  }  
 }

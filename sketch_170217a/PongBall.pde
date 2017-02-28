@@ -1,5 +1,4 @@
 public class PongBall extends HardObject{
-  int radius;
   PVector velocity;
   PVector position; //top left of ball
   float radius;
@@ -39,12 +38,15 @@ public class PongBall extends HardObject{
       if(o.getPriority() < this.getPriority()) {        //<>//
          if(d.equals(Direction.Left) || d.equals(Direction.Right)) {
            velocity.x *= -1;
+           SoundEffects.ballBounce();
          }
          else if(d.equals(Direction.Up) || d.equals(Direction.Down)) {
            velocity.y *= -1;
+           SoundEffects.ballBounce();
          }
     }
       else {
+       SoundEffects.gameOver();
        println("It is now touching the soft edge -> GAMEOVER");
        gameStatus = false;
        }
@@ -52,8 +54,8 @@ public class PongBall extends HardObject{
   }
 
   private float fetchSign() {
-   r = random(0,1); 
-   if (r < limit) { 
+   radius = random(0,1); 
+   if (radius < limit) { 
       coeff = -1; 
    }  else { 
         coeff = 1;

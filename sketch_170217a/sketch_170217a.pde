@@ -21,6 +21,7 @@ boolean newGame;
 void setup() {
   size(500,500);
   startup();
+  SoundEffects.initialize(this);
 }
 
 void draw() {

@@ -20,10 +20,12 @@ public class Paddle extends HardObject{
       if(this.myTopTouching(o)) {
         println("Top Touch: " + o);
         super.translate(0,10);
+        SoundEffects.paddleShake();
       }
       else if(this.myBottomTouching(o)) {
         println("Bottom Touch: " + o);
         super.translate(0,-10);
+        SoundEffects.paddleShake();
       }
       else if(this.myLeftTouching(o)) {
         println("Left Touch: " + o);
