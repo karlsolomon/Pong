@@ -112,6 +112,12 @@ public abstract class HardObject{
     return max(getBottom() - o.getTop(), getTop() - o.getBottom());
   }
   
+  protected PVector center() {
+    float x = (this.xRight - this.xLeft)/2 + this.xLeft;
+    float y = (this.yBottom - this.yTop)/2 + this.yTop;
+    return new PVector(x,y);
+  }
+  
 }
 
 public enum Direction {Right, Left, Up, Down};
