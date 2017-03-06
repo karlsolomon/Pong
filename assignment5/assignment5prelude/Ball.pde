@@ -5,14 +5,16 @@ public class Ball {
  float zTranslation;
  float colorFiller;
  PShape ball;
+
   
  public Ball(int radius)  {
    this.r = radius;
    theta = 0; 
-   theta_step = .01;
+   theta_step = .03;
    zTranslation = 1000; 
    colorFiller = 255;
-   ball = loadShape("bowlingball.obj");
+   ball = loadShape("BowlingBallBig.obj");
+   //ball.setFill(color(200,0,0));
    
    
  }
@@ -28,15 +30,17 @@ public class Ball {
        translate(width/2,height/2,zTranslation);
        zTranslation -= 10;
        rotateX(theta);
+       rotateY(theta);
        theta += theta_step;
+
        shape(ball,0,0,ball.width,ball.height);
        popMatrix();
        stroke(0);
    }
  }
- 
+
  public void interaction(Pins p) {
-  p.scatter();
+  //p.scatter();
  }
  private boolean reachedEnd() {
    return (zTranslation < -200);
