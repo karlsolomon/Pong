@@ -10,7 +10,7 @@ public class Ball {
  public Ball(int radius)  {
    this.r = radius;
    theta = 0;
-   theta_step = .03;
+   theta_step = .1;
    zTranslation = 1000; 
    colorFiller = 255;
    ball = loadShape("BowlingBallBig.obj");

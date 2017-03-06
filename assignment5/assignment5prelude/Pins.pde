@@ -47,6 +47,9 @@ class Pins {
     if(z <= stop) {
       return; // display no pins
     }
+    if (!scattered) {
+      scattered = SoundEffects.pinsHit();
+    }
     pushMatrix();
     for(Pin p : pins) {
       p.getPinShape().translate(random(-.35,.35), 0, -translate);
