@@ -16,15 +16,14 @@ int speed;
   
         super.translate(0,10); 
         SoundEffects.paddleShake(); 
-        
+      }
       else if(this.myBottomTouching(o)) {
         super.translate(0,-10);
         SoundEffects.paddleShake();
-       
-      } 
+  
     } 
   }
-  
+  }
   public int getPriority() {
     return 1;
   }
