@@ -1,24 +1,27 @@
 class Wall {
- int x,y; 
+ int x,y,z; 
  int w,l,h;
- int zTranslation;
+ int c;
+
  //      w
  //   |------|  |
  //   |    h | / l  3D-box
  //   |______|/  
  //
- public Wall(int xPos, int yPos, int w, int l, int h) {
-   this.x = xPos; 
-   this.y = yPos; 
+ public Wall(int xShift, int yShift, int zShift,int w, int l, int h, int col) {
+   this.x = xShift; 
+   this.y = yShift; 
+   this.z = zShift;
    this.w = w; 
    this.l = l;
    this.h = h;
-   zTranslation = 0;
+   this.c = col;
+   
  }
   public void display() {
     pushMatrix();
-    fill(255);
-    translate(x,y,zTranslation);
+    fill(c);
+    translate(x,y,z);
     box(w,h,l);
     popMatrix();
   }

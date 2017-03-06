@@ -15,17 +15,24 @@ public class Ball {
    
  }
  public void display() {
-   pushMatrix();
-   fill(colorFiller);
-   translate(width/2,height/2,1000+zTranslation);
-   zTranslation -= 10;
-   rotateX(theta);
-   theta += theta_step;
-   sphere(r);
-   popMatrix();
+   if (reachedEnd()) {
+     return; 
+   } else {
+       pushMatrix();
+       fill(colorFiller);
+       translate(width/2,height/2,1000+zTranslation);
+       zTranslation -= 10;
+       rotateX(theta);
+       theta += theta_step;
+       sphere(r);
+       popMatrix();
+   }
  }
  
  public void interaction(Pin p) {
   //Placeholder 
+ }
+ private boolean reachedEnd() {
+   return (zTranslation < -1500);
  }
 }

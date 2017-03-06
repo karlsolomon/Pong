@@ -3,6 +3,7 @@ public class Lane {
   
   //just changed what I originally did but put into class. def needs work.
   public void display() { 
+    fill(255);
     pushMatrix(); 
     translate(250,500,0);
     box(500,0,1500);
