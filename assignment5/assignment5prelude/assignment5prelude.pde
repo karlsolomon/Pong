@@ -1,4 +1,5 @@
 float theta;
+boolean gameDone;
 Ball b;
 Lane lane;
 Wall left; //=new(xShift,yShift,zShift,w,l,h)
@@ -29,8 +30,11 @@ void draw() {
   ceiling.display();
   right.display();
   hole.display();
-  
- 
-  
- 
+
+}
+
+void mousePressed() {
+ if (gameDone) {
+   
+ }
 }
