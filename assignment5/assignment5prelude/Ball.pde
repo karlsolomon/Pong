@@ -4,28 +4,34 @@ public class Ball {
  float theta_step;
  float zTranslation;
  float colorFiller;
+ PShape ball;
   
  public Ball(int radius)  {
    this.r = radius;
    theta = 0; 
    theta_step = .01;
-   zTranslation = 0; 
+   zTranslation = 1000; 
    colorFiller = 255;
+   ball = loadShape("bowlingball.obj");
    
    
  }
  public void display() {
    if (reachedEnd()) {
+     //System.out.println(((float)frameCount/60));
      return; 
    } else {
+       
        pushMatrix();
-       fill(colorFiller);
-       translate(width/2,height/2,1000+zTranslation);
+       noStroke();
+       fill(40,250,250);
+       translate(width/2,height/2,zTranslation);
        zTranslation -= 10;
        rotateX(theta);
        theta += theta_step;
-       sphere(r);
+       shape(ball,0,0,ball.width,ball.height);
        popMatrix();
+       stroke(0);
    }
  }
  
@@ -33,6 +39,6 @@ public class Ball {
   p.scatter();
  }
  private boolean reachedEnd() {
-   return (zTranslation < -1500);
+   return (zTranslation < -200);
  }
 }

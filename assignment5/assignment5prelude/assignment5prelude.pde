@@ -1,4 +1,5 @@
 float theta;
+boolean gameDone;
 Ball b;
 Pins p;
 Lane lane;
@@ -23,7 +24,12 @@ void init() {
   left = new Wall(0,500,0,0,3000,1000,120); 
   ceiling = new Wall(250,0,0,500,3000,0,120);
   right = new Wall(500,500,0,0,3000,1000,120);
+<<<<<<< HEAD
   hole = new Wall(250,250,-1500,500,0, 500,0);
+=======
+  hole = new Wall(250,250,-1500,500,0, 500,0);  
+
+>>>>>>> ba51959a7a4e536710bfae9e909ed0d0ba8dd32b
 }
 
 void draw() {
@@ -47,6 +53,9 @@ void draw() {
   right.display();
   hole.display();
 }
+
+
+
 
 void keyPressed() {
   if(key == 'r') {
