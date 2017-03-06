@@ -17,4 +17,16 @@ public class Lane {
     box(500,0,1000);
     popMatrix(); 
   }
+  public void FloorT(){
+    pushMatrix();
+    beginShape();
+    texture(floortexture);
+    vertex(-500, 500, 1500, 0, 0);
+    vertex(500, 500, 1500, 1600, 0);
+    vertex(500, 500, -1500, 1600, 1900);
+    vertex(-500, 500, -1500, 0, 1900);
+    endShape();
+    //noStroke();
+    popMatrix();
+  }
 }

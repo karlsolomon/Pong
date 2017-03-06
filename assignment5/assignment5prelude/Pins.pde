@@ -4,8 +4,11 @@ class Pins {
   float x = 250;
   float xSpacing = 60;
   float zSpacing = 60;
+  float theta =0 ; 
+  float theta_step = 0.3;
+  float zTranslation;
   
-  //Initialize in assignment5prelude p = new Pins(-1100);
+  
   public Pins(float z) {
     this.z = z;
     
@@ -40,6 +43,15 @@ class Pins {
   }
   
   public void scatter() {
+    pushMatrix();
+    rotateX(theta);
+    rotateY(theta);
+    rotateZ(-theta);
+    theta += theta_step;
+
+   // shape(p,x,400,p.width,p.height);
+    popMatrix();
+    
   }
   
   public void display() {
@@ -52,6 +64,7 @@ class Pins {
     PShape pin;
     float x;
     float z;
+    
     
     public Pin(float x, float z) {
       pin = loadShape("BowlingPin.obj");
