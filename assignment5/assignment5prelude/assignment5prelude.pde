@@ -36,49 +36,45 @@ void init() {
 }
 
 void draw() {
-  camera(250,100,1100-addZ,250,475,-200-addZ,0,1,0);
-  if ((1000-addZ) >900){
-    addZ+=4;
+  if(b.getPosition() > p.getPosition()){
+    camera(250,100,1100-addZ,250,475,-200-addZ,0,1,0);
+    if ((1000-addZ) >900){
+      addZ+=4;
+    }
+    else if ((1000-addZ) > 800){
+      addZ+=6;
+    }
+    else if ((1000-addZ) > -700){
+      addZ+=10;
+    }
+    background(0);
+    lights();
+    pointLight(255,255,255,width,height,1000);
+    
+    b.display();
+    p.display();
+    lane.display();
+    lane.FloorT();
+    left.display();
+    ceiling.display();
+    ceiling.CeilingT();
+    right.display();
+    hole.display();
   }
-  else if ((1000-addZ) > 800){
-    addZ+=6;
-    p.scatter();
+  else {
+    background(0);
+    lights();
+    pointLight(255,255,255,width,height,1000);
+    b.display();
+    p.scatter(-1500);
+    lane.display();
+    lane.FloorT();
+    left.display();
+    ceiling.display();
+    ceiling.CeilingT();
+    right.display();
+    hole.display();
   }
-  else if ((1000-addZ) > -700){
-    addZ+=10;
-   
-  }
-  //camera(250,100,1000-addZ,250,475,-700-addZ,0,1,0);
-  //if ((1000-addZ) > 990){
-    //addZ+=2;
-  //}
-  //else if ((1000-addZ) > 900){
-    //addZ+=4;
-  //}
-  //else if ((1000-addZ) > 750){
-    //addZ+=7;
-  //}
-  //else if ((1000-addZ) > -200){
-    //addZ+=10;
-  //}
-  //else if ((1000-addZ) > -600){
-    //addZ+=12;
-  //}
-  background(0);
-  lights();
-  pointLight(255,255,255,width,height,1000);
-  
-  b.display();
-  p.display();
-  lane.display();
-  lane.FloorT();
-  left.display();
- // left.LeftwallT();
-  ceiling.display();
-  ceiling.CeilingT();
-  right.display();
- // right.RightwallT();
-  hole.display();
   
 }
 
