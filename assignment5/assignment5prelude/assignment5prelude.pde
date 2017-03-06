@@ -7,6 +7,7 @@ Wall left; //=new(xShift,yShift,zShift,w,l,h)
 Wall ceiling; 
 Wall right;
 Wall hole; 
+Lights lights;
 int addZ;
 PImage walltexture;
 PImage ceilingtexture;
@@ -27,7 +28,7 @@ void setup() {
 }
 
 void init() {  
-
+  lights = new Lights(1000,2100);
   p = new Pins(-1100);
   b = new Ball(25);
   lane = new Lane(250,500,0,500,3000,10);
@@ -53,23 +54,23 @@ void draw() {
     background(0);
     lights();
     pointLight(255,255,255,width,height,1000);
-    
-    b.display();
     p.display();
-    lane.display();
-    //lane.FloorT();
-    left.display();
-    ceiling.display();
-    //ceiling.CeilingT();
-    right.display();
-    hole.display();
+    display();
   }
   else {
     background(0);
     lights();
     pointLight(255,255,255,width,height,1000);
-    b.display();
+    display();
     p.scatter(-1500);
+
+  }
+
+}
+
+void display() { 
+    b.display();
+    lights.display();
     lane.display();
     //lane.FloorT();
     left.display();
@@ -77,11 +78,7 @@ void draw() {
     //ceiling.CeilingT();
     right.display();
     hole.display();
-  }
-
 }
-
-
 
 
 void keyPressed() {
