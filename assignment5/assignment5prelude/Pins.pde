@@ -1,11 +1,41 @@
 class Pins {
   ArrayList<Pin> pins;
+  float z;
+  float x = 250;
+  float xSpacing = 20;
+  float zSpacing = 20;
   
-  public Pins() {
+  public Pins(float z) {
+    this.z = z;
+    
     pins = new ArrayList<Pin>();
-    for(int i = 0; i < 10; i++) {
-      pins.add(new Pin(250,250));
+    
+    float tmpX = x;
+    float tmpZ = z;
+    pins.add(new Pin(x,z));
+    tmpZ += zSpacing;
+    tmpX -= xSpacing/2;
+    for(int i = 0; i < 2; i++) {
+      pins.add(new Pin(tmpX, tmpZ));
+      tmpX += xSpacing;
     }
+    tmpX = x-xSpacing;
+    tmpZ = z+zSpacing;   
+    for(int i = 0; i < 3; i++) {
+      pins.add(new Pin(tmpX,tmpZ));
+      tmpX += xSpacing;
+    }
+    
+    tmpX = x-1.5*xSpacing;
+    tmpZ += zSpacing;
+    for(int i = 0; i < 4; i++) {
+      pins.add(new Pin(tmpX,tmpZ));
+      tmpX += xSpacing;
+    }    
+  }
+  
+  public float getOffset() {
+    return z;
   }
   
   public void scatter() {
@@ -20,15 +50,14 @@ class Pins {
   class Pin {
     PShape pin;
     float x;
-    float y;
     float z;
     
-    public Pin(float x, float y) {
+    public Pin(float x, float z) {
       pin = loadShape("BowlingPin.obj");
       pin.scale(5);
       pin.rotate(PI);
-      this.x = x;
-      this.y = y;
+      pin.translate(x,z);
+      this.z = z;
     }
     
     public PShape getPinShape() {
@@ -36,7 +65,7 @@ class Pins {
     }
     
    public void display() {
-    shape(pin, x, y, pin.width, pin.height);
+    shape(pin, x, 250, pin.width, pin.height);
    }
     
   }
