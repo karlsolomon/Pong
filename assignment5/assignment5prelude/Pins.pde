@@ -1,13 +1,16 @@
 class Pins {
   ArrayList<Pin> pins;
+  HashMap<Pin, ArrayList<Float>> pinMovement;
   float z;
   float x = 250;
   float xSpacing = 60;
   float zSpacing = 60;
+  boolean scattered;
   
   //Initialize in assignment5prelude p = new Pins(-1100);
   public Pins(float z) {
     this.z = z;
+    scattered = false;
     
     pins = new ArrayList<Pin>();
     
@@ -35,11 +38,23 @@ class Pins {
     }    
   }
   
-  public float getOffset() {
-    return z;
+  public float getPosition() {
+    return z + 4*zSpacing;
   }
   
-  public void scatter() {
+  public void scatter(float stop) {
+    float translate = 50;
+    if(z <= stop) {
+      return; // display no pins
+    }
+    pushMatrix();
+    for(Pin p : pins) {
+      p.getPinShape().translate(random(-.35,.35), 0, -translate);
+      p.getPinShape().rotate(random(-.35,.35));
+      p.display();
+    }    
+    popMatrix();
+    z -= translate;
   }
   
   public void display() {
