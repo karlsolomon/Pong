@@ -7,7 +7,7 @@ Wall left; //=new(xShift,yShift,zShift,w,l,h)
 Wall ceiling; 
 Wall right;
 Wall hole; 
-int addZ=0;
+int addZ;
 
 void setup() {
   fill(255); 
@@ -18,18 +18,17 @@ void setup() {
 }
 
 void init() {  
-  p = new Pins();
+  //p = new Pins();
   b = new Ball(25);
-  lane = new Lane();
-  left = new Wall(0,500,0,0,3000,1000,120); 
-  ceiling = new Wall(250,0,0,500,3000,0,120);
-  right = new Wall(500,500,0,0,3000,1000,120);
-<<<<<<< HEAD
-  hole = new Wall(250,250,-1500,500,0, 500,0);
-=======
-  hole = new Wall(250,250,-1500,500,0, 500,0);  
+  lane = new Lane(250,500,0,500,3000,10);
+  left = new Wall(0,500,0,10,3000,1000,120); 
+  ceiling = new Wall(250,0,0,500,3000,10,120);
+  right = new Wall(500,500,0,10,3000,1000,120);
 
->>>>>>> ba51959a7a4e536710bfae9e909ed0d0ba8dd32b
+  hole = new Wall(250,250,-1500,500,0, 500,0);  
+  addZ = 0;
+
+
 }
 
 void draw() {
@@ -44,9 +43,9 @@ void draw() {
     addZ+=10;
   }
   background(0);
-  
+  lights();
   b.display();
-  p.display();
+  //p.display();
   lane.display();
   left.display();
   ceiling.display();

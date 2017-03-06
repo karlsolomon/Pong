@@ -9,10 +9,10 @@ public class Ball {
  public Ball(int radius)  {
    this.r = radius;
    theta = 0; 
-   theta_step = .01;
+   theta_step = .4;
    zTranslation = 1000; 
    colorFiller = 255;
-   ball = loadShape("bowlingball.obj");
+   ball = loadShape("BowlingBallBig.obj");
    
    
  }
@@ -36,9 +36,12 @@ public class Ball {
  }
  
  public void interaction(Pins p) {
-  p.scatter();
+  //if (zTranslation-ball.width/2 >= p.getOffSet()) {
+  //  p.scatter();
+  //}
+  
  }
  private boolean reachedEnd() {
-   return (zTranslation < -200);
+   return (zTranslation < -900);
  }
 }
