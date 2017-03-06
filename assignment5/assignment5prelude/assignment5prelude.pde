@@ -1,6 +1,10 @@
 float theta;
-public Ball b;
-public Lane lane;
+Ball b;
+Lane lane;
+Wall left;
+Wall ceiling; 
+Wall right;
+
 void setup() {
   fill(255); 
   background(0);
@@ -8,6 +12,9 @@ void setup() {
   theta = 0;
   b = new Ball(25);
   lane = new Lane();
+  left = new Wall(0,500,0,1500,500); 
+  ceiling = new Wall(250,0,500,1500,0);
+  right = new Wall(500,500,0,1500,500);
 }
 
 void draw() {
@@ -15,6 +22,9 @@ void draw() {
   background(0);
   b.display();
   lane.display();
+  left.display();
+  ceiling.display();
+  right.display();
  
   
  
