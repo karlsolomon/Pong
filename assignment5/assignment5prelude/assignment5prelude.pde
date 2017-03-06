@@ -1,6 +1,6 @@
 float theta;
 Ball b;
-Pin p;
+Pins p;
 Lane lane;
 Wall left; //=new(xShift,yShift,zShift,w,l,h)
 Wall ceiling; 
@@ -17,17 +17,13 @@ void setup() {
 }
 
 void init() {  
-  p = new Pin();
+  p = new Pins();
   b = new Ball(25);
   lane = new Lane();
   left = new Wall(0,500,0,0,3000,1000,120); 
   ceiling = new Wall(250,0,0,500,3000,0,120);
   right = new Wall(500,500,0,0,3000,1000,120);
-<<<<<<< HEAD
   hole = new Wall(250,250,-1500,500,0, 500,0);
-=======
-  hole = new Wall(250,250,-1500,500,0, 500,0);  
->>>>>>> 545b9932dcb10c4bb4bbc8b7bba0df49394dbca8
 }
 
 void draw() {
@@ -49,7 +45,6 @@ void draw() {
   left.display();
   ceiling.display();
   right.display();
-<<<<<<< HEAD
   hole.display();
 }
 
@@ -58,7 +53,4 @@ void keyPressed() {
     init();
     redraw();
   }
-=======
-  hole.display(); 
->>>>>>> 545b9932dcb10c4bb4bbc8b7bba0df49394dbca8
 }

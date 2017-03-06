@@ -29,8 +29,8 @@ public class Ball {
    }
  }
  
- public void interaction(Pin p) {
-  //Placeholder 
+ public void interaction(Pins p) {
+  p.scatter();
  }
  private boolean reachedEnd() {
    return (zTranslation < -1500);
