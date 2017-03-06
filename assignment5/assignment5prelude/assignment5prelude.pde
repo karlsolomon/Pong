@@ -21,11 +21,11 @@ void init() {
   //p = new Pins();
   b = new Ball(25);
   lane = new Lane(250,500,0,500,3000,10);
-  left = new Wall(0,500,0,10,3000,1000,120); 
-  ceiling = new Wall(250,0,0,500,3000,10,120);
-  right = new Wall(500,500,0,10,3000,1000,120);
+  left = new Wall(0,500,0,10,3000,1000,"wallTexture.jpg"); 
+  ceiling = new Wall(250,0,0,500,3000,10,"wallTexture.jpg");
+  right = new Wall(500,500,0,10,3000,1000,"wallTexture.jpg");
 
-  hole = new Wall(250,250,-1500,500,0, 500,0);  
+  hole = new Wall(250,250,-1500,500,0, 500,"blackScreen.png");  
   addZ = 0;
 
 

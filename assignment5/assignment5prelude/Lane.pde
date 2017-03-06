@@ -18,7 +18,7 @@ public class Lane {
     pushMatrix();
     translate(x,y,z);
     lane = createShape(BOX,w,h,l);
-    //lane.setTexture(tex);
+    lane.setTexture(tex);
     shape(lane);
     popMatrix();
   }
