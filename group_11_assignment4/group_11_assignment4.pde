@@ -12,7 +12,7 @@ PVector downUnit = new PVector(0,1);
 PVector leftUnit = new PVector(-1,0);
 PVector rightUnit = new PVector(1,0);
 ArrayList<HardObject> actors;
-ArrayList<HardObject> movingActors;  //<>// //<>//
+ArrayList<HardObject> movingActors;  //<>// //<>// //<>//
 boolean[] keys = new boolean[4]; // {w,s,up,down} 
 boolean newGame;
 
@@ -29,7 +29,7 @@ void setup() {
 void draw() {
   if (b.gameStatus()) {
     moveKeys();
-    for(HardObject h : movingActors) { //<>// //<>//
+    for(HardObject h : movingActors) { //<>// //<>// //<>//
       for(HardObject o : actors) {
         if(h.equals(o)) continue; // don't interact w/ self
         h.interact(o);
@@ -96,6 +96,7 @@ void keyReleased() {
       keys[1] = false;
     }
     else if (key == 'n' && !b.gameStatus()) {
+     end.setNewGame();
      newGame = b.gameStatus(true); 
      loop();
     }

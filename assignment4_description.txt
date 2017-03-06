@@ -1,0 +1,22 @@
+The goal of the animation was to recreate the classic Pong game with a ball and two paddles, 
+with a few extra details (color change and a tail behind the pong ball). 
+For the classes we had a HardObject class which is the super of all the other classes, 
+excluding the sound, ball trail and the game over screen. 
+The HardObject class has an interact method that the other subclasses (Edge, PongBall, Paddle) use to determine how they interact with each other. 
+The Edge class has two enum types: Hard and Soft. The Hard type is designed such that the ball and the paddlewill rebound off of it. 
+The Soft type is designed such that the ball will phase through it, resulting in the gameover screen appearing with added sound. 
+The Paddle class is designed such that it can move based on user-input and acts as a wall for the ball, causing a bounce and a sound from the ball's collision. 
+There is also a sound when it runs into the Hard Edge. The PongBall is designed to be the focus point of the game. 
+It rebounds off the Hard Edge and Paddle. It changes colors after every bounce. Following the ball is the purely cosmetic trail that changes in transparency as it ventures out from the ball. 
+It is designed to follow the position of the ball a few frames in the past. When the ball passes the Soft Edge, a Gameover screen appears. 
+This creates a sound effect. The sound effects we used can be found on the following link: "http://www.soundboard.com/sb/SoundFXNow" for bounces and  "http://www.orangefreesounds.com/womp-womp/" for the gameover music.
+ On the gameover screen, you can choose to replay the game. In addition, the gameover text rotates around a full-circle. 
+
+What brought us challenges was trying to implement the bouncing of the PongBall off the Paddles. 
+When it hit a corner or when you moved the paddle Up or Down into the Pongball, it created a strange scenario where the ball would stick to the paddle and off into the soft edge. 
+
+Karl created the skeleton code and developed the underlying structure for how the classes interacted. 
+Dylan helped him in further implementation, including logic and development of bouncing. 
+In addition to this, Karl helped my adding the sounds. 
+Myeongin worked on the gameover screen by adding in the rotational functionality after experimenting with rotation of the paddle (which we scrapped). 
+Dylan further developed the PongBalls by adding the color changes and the trail that followed it.
