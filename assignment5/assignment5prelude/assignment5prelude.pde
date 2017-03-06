@@ -1,5 +1,6 @@
 float theta;
 boolean gameDone;
+boolean pinsSet;
 Ball b;
 Pins p;
 Lane lane;
@@ -27,7 +28,7 @@ void setup() {
   SoundEffects.initialize(this);
 }
 
-void init() {  
+void init() {
   lights = new Lights(1000,2100);
   p = new Pins(-1100);
   b = new Ball(25);
@@ -39,9 +40,18 @@ void init() {
   addZ = 0;
 }
 
+
 void draw() {
-  if(b.getPosition() > p.getPosition()){
-    camera(250,100,1100-addZ,250,475,-200-addZ,0,1,0);
+  background(0);
+  display();
+  lights();
+  pointLight(255,255,255,width,height,1000);  
+  camera(250,100,1100-addZ,250,475,-200-addZ,0,1,0);
+  if(!pinsSet) {
+    pinsSet = p.dropPins(0);
+  }
+  else if(b.getPosition() > p.getPosition()){
+    b.display();
     if ((1000-addZ) >900){
       addZ+=4;
     }
@@ -51,39 +61,26 @@ void draw() {
     else if ((1000-addZ) > -700){
       addZ+=10;
     }
-    background(0);
-    lights();
-    pointLight(255,255,255,width,height,1000);
     p.display();
-    display();
+  }
+  else if(!gameDone) {
+    b.display();
+    gameDone = p.scatter(-1500);
   }
   else {
-    background(0);
-    lights();
-    pointLight(255,255,255,width,height,1000);
-    display();
-    p.scatter(-1500);
-
+    print("DYLAN SUX");
+    gameDone = false;
+    pinsSet = false;
+    init();
   }
-
 }
 
 void display() { 
-    b.display();
+    p.display();
     lights.display();
     lane.display();
-    //lane.FloorT();
     left.display();
     ceiling.display();
-    //ceiling.CeilingT();
     right.display();
     hole.display();
-}
-
-
-void keyPressed() {
-  if(key == 'r') {
-    init();
-    redraw();
-  }
 }

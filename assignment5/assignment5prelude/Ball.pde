@@ -21,8 +21,7 @@ public class Ball {
    if(getPosition() > -1300) {
      pushMatrix();
      noStroke();
-     fill(40,250,250);
-     translate(width/2,height/2,zTranslation);
+     translate(width/2,ball.width+height/2,zTranslation);
      zTranslation -= 10;
      rotateX(theta);
      rotateY(theta);
