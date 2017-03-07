@@ -1,0 +1,20 @@
+Animation Description
+    This animation is a simple bowling throw.
+    The thrower throws a strike every time because they're pretty good at bowling.
+    This is a personal bowling alley so it only contains one lane. Good bowlers have these.
+
+Classes:
+    Ball - 
+    Lane - 
+    Pins - Pins outer class w/ inner Pin class. This creates the pins, drops the pins with a metal bar in front, and organizes the pins in an equilateral triangle. It also scatters the 10 pins when hit by the bowling ball. 
+    SoundEffects - 
+    Wall - 
+
+Unexpected Challenges:
+    Getting objects in Maya to load color into processing was difficult.
+    Getting a realistic ball and pin collision was difficult since we didn't exactly know how to model that.
+
+Tasks
+    Myeongin - Camera, Textures, Wall, Main.
+    Dylan - Sound Effects, Ball, Lane, Wall, Main.
+    Karl - Pins class, designed objects in Maya, Main.
