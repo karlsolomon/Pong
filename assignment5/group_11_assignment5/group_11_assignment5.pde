@@ -1,6 +1,7 @@
 float theta;
 boolean gameDone;
 boolean pinsSet;
+boolean ballRolling;
 Ball b;
 Pins p;
 Lane lane;
@@ -23,6 +24,7 @@ void setup() {
 }
 
 void init() {
+  ballRolling = true;
   p = new Pins(-1100);
   b = new Ball();
   lane = new Lane(250,500,0,500,3000,10);
@@ -37,6 +39,10 @@ void init() {
 void draw() {
   background(0);
   display();
+  if (ballRolling) { 
+    SoundEffects.ballRolling(ballRolling);
+    ballRolling = false;
+  }
   lights();
   pointLight(255,255,255,width,height,1000);  
   camera(250,100,1100-addZ,250,475,-200-addZ,0,1,0);
@@ -44,7 +50,10 @@ void draw() {
     pinsSet = p.dropPins(0);
   }
   else if(b.getPosition() > p.getPosition()){
+
     b.display();
+    
+    
     if ((1000-addZ) >900){
       addZ+=6;
     }

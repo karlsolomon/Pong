@@ -3,7 +3,6 @@ class Wall {
  protected PImage img;
  int x,y,z; 
  int w,l,h;
- int c;
 
 
  //      w
@@ -19,7 +18,6 @@ class Wall {
    this.l = l;
    this.h = h;
    this.img = loadImage(img);
-   this.c = 255;
    
  }
 
