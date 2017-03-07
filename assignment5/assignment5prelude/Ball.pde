@@ -1,28 +1,25 @@
-public class Ball {
- int r; 
+public class Ball { 
  float theta; 
  float theta_step;
  float zTranslation;
- float colorFiller;
  PShape ball;
 
   
- public Ball(int radius)  {
-   this.r = radius;
+ public Ball()  {
+
    theta = 0;
    theta_step = .1;
    zTranslation = 1000; 
-   colorFiller = 255;
    ball = loadShape("BowlingBallBig.obj");
    ball.setFill(color(200,0,0));   
 
  }
  public void display() {
-   if(getPosition() > -1300) {
+   if(getPosition() > -1200) {
      pushMatrix();
      noStroke();
      translate(width/2,ball.width+height/2,zTranslation);
-     zTranslation -= 10;
+     zTranslation -= 15;
      rotateX(theta);
      rotateY(theta);
      theta += theta_step;
@@ -32,16 +29,11 @@ public class Ball {
      stroke(0);
    }
    else {
+     zTranslation -= 15;
      return;
    }
  }
  
- public void interaction(Pins p) {
-  //if (zTranslation-ball.width/2 >= p.getOffSet()) {
-  //  p.scatter();
-  //}
-  
- }
 
 
  private float getPosition() {

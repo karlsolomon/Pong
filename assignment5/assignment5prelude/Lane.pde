@@ -1,4 +1,4 @@
-//may possibly just be scene in general and not just lane. 
+
 public class Lane {
   protected PImage tex;
   protected PShape lane;
@@ -13,7 +13,7 @@ public class Lane {
    this.h = h;
    tex = loadImage("laneTexture.png");
  }
-  //just changed what I originally did but put into class. def needs work.
+ 
   public void display() { 
     pushMatrix();
     translate(x,y,z);
@@ -21,17 +21,7 @@ public class Lane {
     lane.setTexture(tex);
     shape(lane);
     popMatrix();
+
   }
-  //public void FloorT(){
-  //  pushMatrix();
-  //  beginShape();
-  //  texture(floortexture);
-  //  vertex(-500, 500, 1500, 0, 0);
-  //  vertex(500, 500, 1500, 1600, 0);
-  //  vertex(500, 500, -1500, 1600, 1900);
-  //  vertex(-500, 500, -1500, 0, 1900);
-  //  endShape();
-  //  //noStroke();
-  //  popMatrix();
-  //}
+
 }
