@@ -61,8 +61,7 @@ class Pins {
   
   public boolean scatter(float stop) {
     float translate = 50;
-    print("Z = " + z + "\n");
-    print("Stop = " + stop + "\n");
+    SoundEffects.ballRolling(false);
     if(z <= stop) {
       pins = new ArrayList<Pin>();
       return true; // display no pins
@@ -112,7 +111,6 @@ class Pins {
     }
     
     public float getY() {
-      print(this.y);
       return this.y;      
     }
     

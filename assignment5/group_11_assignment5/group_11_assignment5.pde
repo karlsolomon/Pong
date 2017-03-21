@@ -1,18 +1,16 @@
 float theta;
 boolean gameDone;
 boolean pinsSet;
+boolean ballRolling;
 Ball b;
 Pins p;
 Lane lane;
-Wall left; //=new(xShift,yShift,zShift,w,l,h)
+Wall left; 
 Wall ceiling; 
 Wall right;
 Wall hole; 
-Lights lights;
 int addZ;
-PImage walltexture;
-PImage ceilingtexture;
-PImage floortexture;
+
 
 
 
@@ -22,16 +20,13 @@ void setup() {
   size(500,500,P3D); 
   theta = 0;
   init();
-  walltexture = loadImage("wall.jpg");
-  ceilingtexture = loadImage("ceiling.jpg");
-  floortexture = loadImage("floor.jpg");
   SoundEffects.initialize(this);
 }
 
 void init() {
-  lights = new Lights(1000,2100);
+  ballRolling = true;
   p = new Pins(-1100);
-  b = new Ball(25);
+  b = new Ball();
   lane = new Lane(250,500,0,500,3000,10);
   left = new Wall(0,500,0,10,3000,1000,"wallTexture.jpg"); 
   ceiling = new Wall(250,0,0,500,3000,10,"ceiling.jpg");
@@ -44,6 +39,10 @@ void init() {
 void draw() {
   background(0);
   display();
+  if (ballRolling) { 
+    SoundEffects.ballRolling(ballRolling);
+    ballRolling = false;
+  }
   lights();
   pointLight(255,255,255,width,height,1000);  
   camera(250,100,1100-addZ,250,475,-200-addZ,0,1,0);
@@ -51,24 +50,26 @@ void draw() {
     pinsSet = p.dropPins(0);
   }
   else if(b.getPosition() > p.getPosition()){
+
     b.display();
+    
+    
     if ((1000-addZ) >900){
-      addZ+=4;
-    }
-    else if ((1000-addZ) > 800){
       addZ+=6;
     }
+    else if ((1000-addZ) > 800){
+      addZ+=9;
+    }
     else if ((1000-addZ) > -700){
-      addZ+=10;
+      addZ+=15;
     }
     p.display();
   }
   else if(!gameDone) {
     b.display();
-    gameDone = p.scatter(-1500);
+    gameDone = p.scatter(-1600);
   }
   else {
-    print("DYLAN SUX");
     gameDone = false;
     pinsSet = false;
     init();
@@ -77,7 +78,6 @@ void draw() {
 
 void display() { 
     p.display();
-    lights.display();
     lane.display();
     left.display();
     ceiling.display();
