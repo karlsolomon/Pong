@@ -1,5 +1,4 @@
 class Point {
-
   private int x; 
   private int y; 
   public Point(int xPos, int yPos) { 

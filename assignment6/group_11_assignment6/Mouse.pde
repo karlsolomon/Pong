@@ -6,6 +6,7 @@ public abstract class Mouse {
   final int xWidth;
   final int yHeight;
   private Direction dir;
+  public ArrayList<Direction> directionOrder;
   
   public Mouse(Point start, Point end, int movementSize, int[][][] maze, PImage image){
     this.xWidth = movementSize;
@@ -15,6 +16,11 @@ public abstract class Mouse {
     this.dir = Direction.UP;
     this.maze = maze;
     this.image = image;
+    directionOrder = new ArrayList<Direction>();
+    directionOrder.add(Direction.LEFT);
+    directionOrder.add(Direction.UP);
+    directionOrder.add(Direction.LEFT);
+    directionOrder.add(Direction.DOWN);    
   }
   
   public Point getPosition() {

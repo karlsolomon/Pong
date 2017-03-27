@@ -18,7 +18,7 @@ void setup() {
  end = maze.getEnd();
  mouse1 = new MouseLeft(start, end, spacing, mouseMaze);
  mouse2 = new MouseRight(start, end, spacing, mouseMaze); 
- frameRate(2);
+ frameRate(1);
 }
 
 void draw() {
