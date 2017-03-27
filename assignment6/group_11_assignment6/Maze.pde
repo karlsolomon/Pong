@@ -1,4 +1,4 @@
-public class Maze {  //<>// //<>// //<>// //<>// //<>//
+public class Maze {   //<>//
   int gap; 
   int width_openings;
   int startX,startY;
@@ -79,8 +79,25 @@ public class Maze {  //<>// //<>// //<>// //<>// //<>//
       }
       for (Line line: lines) { 
          line.convertLineToGridBarrier(mousesPOV);  //<>//
-      } 
-   //<>//
+      }    //<>//
+  }
+  
+  public int[][][] getMaze() {
+    return mousesPOV;
+  }
+  
+  public int getSpacing() {
+    return gap;
+  }
+  
+  public Point getStart() {
+    //TODO: in terms of MOUSEPOV indices
+    return new Point(20,20);
+  }
+  
+  public Point getEnd() {
+    //TODO: in terms of MOUSEPOV indices
+    return new Point(200,200);
   }
 
   public void makeNewLine(Point p,Random rnd) {

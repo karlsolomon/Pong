@@ -16,6 +16,7 @@ public abstract class Mouse {
     this.dir = Direction.UP;
     this.maze = maze;
     this.image = image;
+    directionOrder = new ArrayList<Direction>();
     directionOrder.add(Direction.LEFT);
     directionOrder.add(Direction.UP);
     directionOrder.add(Direction.RIGHT);
@@ -64,8 +65,4 @@ public abstract class Mouse {
         System.out.println("Error: Invalid Direction");
     }
   }
-}
-
-public enum Direction {
-    LEFT, UP, RIGHT, DOWN
 }
