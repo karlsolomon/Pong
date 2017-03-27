@@ -1,4 +1,5 @@
 public abstract class Mouse {
+  PImage image;
   private int x;
   private int y;
   private int[][][] maze;
@@ -7,13 +8,14 @@ public abstract class Mouse {
   private Direction dir;
   protected ArrayList<Direction> directionOrder; //Direction.LEFT, Direction.UP, Direction.RIGHT, Direction.DOWN};
 
-  public Mouse(int startX, int startY, int movementSize, int[][][] maze){
+  public Mouse(int startX, int startY, int movementSize, int[][][] maze, PImage image){
     this.xWidth = movementSize;
     this.yHeight = movementSize;
     this.x = startX;
     this.y = startY;
     this.dir = Direction.UP;
     this.maze = maze;
+    this.image = image;
     directionOrder.add(Direction.LEFT);
     directionOrder.add(Direction.UP);
     directionOrder.add(Direction.RIGHT);
@@ -24,21 +26,22 @@ public abstract class Mouse {
     return this.dir;
   }
   
-  void updateDirection() {
-    this.dir = calculateChangeInDirection();
+  protected void setDirection(Direction dir) {
+    this.dir = dir;
   }
-
-  abstract Direction calculateChangeInDirection();
-
+  
   protected boolean moveIsValid() {
     return maze[x][y][directionOrder.indexOf(dir)] == 1;
   }
-
-  void move() {
+  
+  public void display() {
+    image(image, (x+1)*xWidth, (y+1)*yHeight, xWidth, yHeight);
+  }
+  
+  protected void move() {
     switch(dir) {
       case LEFT:
         x -= 1;
-        //push/pop matrix
       break;
 
       case UP:
