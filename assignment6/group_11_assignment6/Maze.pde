@@ -13,6 +13,7 @@ class Maze {
   ArrayList<Point> pointsR; 
   ArrayList<Point> pointsL;
   ArrayList<Line> lines; 
+  ArrayList<Point> badPoints;
 
   public Maze(int cellSize) {
     gap = cellSize; 
@@ -24,6 +25,7 @@ class Maze {
     endX = endX - endX % cellSize;
     endY = cellSize;
     pointsAll = new ArrayList<Point>();
+
   }
 
   public void initializeFrame() {
@@ -68,26 +70,84 @@ class Maze {
   }
 
   public void createMaze() {
-      while(!mazeFull) {
-        makeNewLine();
+      badPoints = new ArrayList<Point>();
+      Random rnd = new Random();
+      while(pointsAll.size() != badPoints.size()) {
+        int rInt = rnd.nextInt(pointsAll.size()); //<>//
+        Point p = pointsAll.get(rInt); 
+        if (badPoints.contains(p))
+          continue;
+        makeNewLine(p,rnd); //<>//
       }
   }
 
-  public void makeNewLine() {
+  public void makeNewLine(Point p,Random rnd) {
+
     //get a random point
     // check for random direction (up, down, left,right)
     // if valid direction (isValidPoint)
     // make new point
     // make new line
+    
+    ArrayList<Direction> directions = new ArrayList<Direction>(Arrays.asList(Direction.UP, Direction.DOWN, Direction.LEFT, Direction.RIGHT));
+    boolean isValid = false;
+    int newX = 0;
+    int newY = 0;
+    int rInt;
+
+    while (!directions.isEmpty()) { 
+
+      rInt = rnd.nextInt(directions.size()); //<>//
+      Direction dir = directions.get(rInt);
+      if (dir == Direction.UP) {
+        newX = p.getXPos();
+        newY = p.getYPos() - gap; 
+
+      } else if (dir == Direction.DOWN) {
+        newX = p.getXPos(); 
+        newY = p.getYPos() + gap;
+
+      } else if (dir == Direction.LEFT) {
+        newX = p.getXPos() - gap;
+        newY = p.getYPos();
+
+      } else if (dir == Direction.RIGHT) {
+        newX = p.getXPos() + gap;  //<>//
+        newY = p.getYPos();
+      }
+      println("Old = x: " + p.getXPos() + " y: " + p.getYPos() + "New = x: " + newX + " y: " + newY + " Dir = " + dir);
+      if(isValidPoint(newX,newY)) 
+          isValid = true; //<>//
+      else 
+        directions.remove(rInt); //<>//
+
+      if(isValid) {
+        Point newP = new Point(newX,newY);
+        pointsAll.add(newP);
+        lines.add(new Line(p,newP));
+        break;
+      }
+      
+
+    }
+    if(!isValid)
+      badPoints.add(p);
+
   }
 
-  public boolean isValidPoint(Point point, int newX, int newY) {
+  public boolean isValidPoint(int newX, int newY) {
+    boolean xOutRange = newX > width-gap || newX < gap;  //<>//
+    boolean yOutRange = newY > height-gap || newY < gap;
+    boolean outRange = xOutRange || yOutRange;
     for (Point p: pointsAll) {
-      if(newX == p.getXPos() && newY == p.getYPos()) 
+
+      if((newX == p.getXPos() && newY == p.getYPos()) || (outRange)) { //<>//
+        print("false");
         return false;
-    }
+      }
+    } //<>//
 
-
+    print("true");
     return true; 
   }
   public void display() {
@@ -150,10 +210,10 @@ class Line {
       x1 = (x1 / gap) - 1;
       x2 = x1;
       try {        
-        foo[x1][y1][3] = 0;
+        //foo[x1][y1][3] = 0;
       } catch (ArrayIndexOutOfBoundsException e){}
       try {        
-        foo[x2][y2][1] = 0;
+        //foo[x2][y2][1] = 0;
       } catch (ArrayIndexOutOfBoundsException e){}
       
     }
@@ -164,10 +224,10 @@ class Line {
       x1 = s.getXPos()/gap - 2; 
       x2 = x1 + 1;
        try {        
-        foo[x1][y1][2] = 0;
+        //foo[x1][y1][2] = 0;
       } catch (ArrayIndexOutOfBoundsException e){}
       try {        
-        foo[x2][y2][0] = 0;
+        //foo[x2][y2][0] = 0;
       } catch (ArrayIndexOutOfBoundsException e){}
     }
   }
