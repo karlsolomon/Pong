@@ -18,6 +18,7 @@ void setup() {
  end = maze.getEnd();
  mouse1 = new MouseLeft(start, end, spacing, mouseMaze);
  mouse2 = new MouseRight(start, end, spacing, mouseMaze); 
+ frameRate(2);
 }
 
 void draw() {
@@ -28,7 +29,7 @@ void draw() {
   }
   maze.display();
   mouse1.move();
-  mouse2.move();  
+  mouse2.move();
 }
 
 public enum Direction {

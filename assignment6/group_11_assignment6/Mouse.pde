@@ -6,8 +6,7 @@ public abstract class Mouse {
   final int xWidth;
   final int yHeight;
   private Direction dir;
-  protected ArrayList<Direction> directionOrder; //Direction.LEFT, Direction.UP, Direction.RIGHT, Direction.DOWN
-
+  
   public Mouse(Point start, Point end, int movementSize, int[][][] maze, PImage image){
     this.xWidth = movementSize;
     this.yHeight = movementSize;
@@ -16,11 +15,6 @@ public abstract class Mouse {
     this.dir = Direction.UP;
     this.maze = maze;
     this.image = image;
-    directionOrder = new ArrayList<Direction>();
-    directionOrder.add(Direction.LEFT);
-    directionOrder.add(Direction.UP);
-    directionOrder.add(Direction.RIGHT);
-    directionOrder.add(Direction.DOWN);
   }
   
   public Point getPosition() {
@@ -41,22 +35,21 @@ public abstract class Mouse {
   
   protected boolean moveIsValid() {
     boolean isValid = maze[current.getXPos()][current.getYPos()][directionOrder.indexOf(dir)] == 1;
-    print(isValid);
+    print(". " + dir + " valid: " + isValid + "\t");
     return isValid;
   }
   
   public void display() {
     image(image, (current.getXPos()+1)*xWidth, (current.getYPos()+1)*yHeight, xWidth, yHeight);
     //pushMatrix();
-    //image(image, 0, 0, xWidth, yHeight);
-    //rotate(PI/2 * (directionOrder.indexOf(dir) - 1));
-    //print(dir);
+    //rotate(PI/8);
     //translate((current.getXPos()+1)*xWidth, (current.getYPos()+1)*yHeight);
+    //image(image, 0, 0, xWidth, yHeight);
     //popMatrix();
-    print("X: " + current.getXPos() + " Y: " + current.getYPos() + "\n");
   }
   
-  protected void move() {
+  protected void move() {    
+    print("\tFrom X: " + current.getXPos() + " Y: " + current.getYPos());
     switch(dir) {
       case LEFT:
         current.setXPos(current.getXPos() - 1);
@@ -77,5 +70,7 @@ public abstract class Mouse {
       default:
         System.out.println("Error: Invalid Direction");
     }
+    
+    print("\tTo X: " + current.getXPos() + " Y: " + current.getYPos() + "\n");
   }
 }
