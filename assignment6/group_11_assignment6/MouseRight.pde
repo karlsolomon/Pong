@@ -5,11 +5,14 @@ public class MouseRight extends Mouse {
   void move() {
     int startIndex = (directionOrder.indexOf(getDirection()) + 1) % directionOrder.size();
     int endIndex = startIndex + directionOrder.size();
+    //print("Right ==> My dir: " + getDirection() + " startDir: " + directionOrder.get(directionOrder.indexOf(startIndex)) + " nextDir: " + directionOrder.get(directionOrder.indexOf(startIndex) + 1)); 
     for(int i = startIndex; i < endIndex; i ++) {
       if(!moveIsValid()) {
         setDirection(directionOrder.get(i % directionOrder.size()));
       } else {
         super.move();
+        print("Moving: " + getDirection());
+        break;
       }
     }
     super.display();

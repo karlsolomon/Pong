@@ -47,6 +47,12 @@ public abstract class Mouse {
   
   public void display() {
     image(image, (current.getXPos()+1)*xWidth, (current.getYPos()+1)*yHeight, xWidth, yHeight);
+    //pushMatrix();
+    //image(image, 0, 0, xWidth, yHeight);
+    //rotate(PI/2 * (directionOrder.indexOf(dir) - 1));
+    //print(dir);
+    //translate((current.getXPos()+1)*xWidth, (current.getYPos()+1)*yHeight);
+    //popMatrix();
     print("X: " + current.getXPos() + " Y: " + current.getYPos() + "\n");
   }
   
