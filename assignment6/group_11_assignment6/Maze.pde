@@ -21,7 +21,13 @@ public class Maze {   //<>//
     endY = cellSize;
     pointsAll = new ArrayList<Point>();
     mousesPOV = new int[width/cellSize][width/cellSize][4];
-
+    for(int i = 0; i < width/cellSize; i++) {
+      for(int j = 0; j < width/cellSize; j ++) {
+        for(int k = 0; k < 4; k++) {
+          mousesPOV[i][j][k] = 1;
+        }
+      }
+    }
   }
 
   public void initializeFrame() {
@@ -97,7 +103,7 @@ public class Maze {   //<>//
   
   public Point getEnd() {
     //TODO: in terms of MOUSEPOV indices
-    return new Point(200,200);
+    return new Point(0,0);
   }
 
   public void makeNewLine(Point p,Random rnd) {

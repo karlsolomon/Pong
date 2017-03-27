@@ -1,7 +1,7 @@
 public class MouseLeft extends Mouse {
   
-  public MouseLeft (int startX, int startY, int movementSize, int[][][] maze){
-    super(startX, startY, movementSize, maze, loadImage("greenMouse.png"));
+  public MouseLeft (Point start, Point end, int movementSize, int[][][] maze){
+    super(start, end, movementSize, maze, loadImage("greenMouse.png"));
   }
   
   void move() {
@@ -14,5 +14,6 @@ public class MouseLeft extends Mouse {
         super.move();
       }
     }
+    super.display();
   }
 }

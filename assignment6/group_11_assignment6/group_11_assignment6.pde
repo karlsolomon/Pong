@@ -6,7 +6,6 @@ MouseRight mouse2;
 Point start;
 Point end;
 int spacing;
-boolean mouseFinished = false;
 void setup() {
  size(500,500);  
  maze = new Maze(20);
@@ -17,16 +16,19 @@ void setup() {
  spacing = maze.getSpacing();
  start = maze.getStart();
  end = maze.getEnd();
- mouse1 = new MouseLeft(start.getXPos(), start.getYPos(), spacing, mouseMaze);
- mouse2 = new MouseRight(start.getXPos(), start.getYPos(), spacing, mouseMaze);
+ mouse1 = new MouseLeft(start, end, spacing, mouseMaze);
+ mouse2 = new MouseRight(start, end, spacing, mouseMaze); 
 }
 
 void draw() {
-  if(mouseFinished) {
+  background(255);
+  if(mouse1.finishedMaze() || mouse2.finishedMaze()) {
     print("Game Over");
     noLoop();
   }
   maze.display();
+  mouse1.move();
+  mouse2.move();  
 }
 
 public enum Direction {

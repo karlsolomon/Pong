@@ -1,18 +1,18 @@
 public abstract class Mouse {
   PImage image;
-  private int x;
-  private int y;
+  Point end;
+  Point current;
   private int[][][] maze;
   final int xWidth;
   final int yHeight;
   private Direction dir;
-  protected ArrayList<Direction> directionOrder; //Direction.LEFT, Direction.UP, Direction.RIGHT, Direction.DOWN};
+  protected ArrayList<Direction> directionOrder; //Direction.LEFT, Direction.UP, Direction.RIGHT, Direction.DOWN
 
-  public Mouse(int startX, int startY, int movementSize, int[][][] maze, PImage image){
+  public Mouse(Point start, Point end, int movementSize, int[][][] maze, PImage image){
     this.xWidth = movementSize;
     this.yHeight = movementSize;
-    this.x = startX;
-    this.y = startY;
+    this.current = start;
+    this.end = end;
     this.dir = Direction.UP;
     this.maze = maze;
     this.image = image;
@@ -24,7 +24,11 @@ public abstract class Mouse {
   }
   
   public Point getPosition() {
-    return new Point(x,y);
+    return current;
+  }
+  
+  public boolean finishedMaze() {
+    return end.equals(current);
   }
   
   public Direction getDirection() {
@@ -36,29 +40,32 @@ public abstract class Mouse {
   }
   
   protected boolean moveIsValid() {
-    return maze[x][y][directionOrder.indexOf(dir)] == 1;
+    boolean isValid = maze[current.getXPos()][current.getYPos()][directionOrder.indexOf(dir)] == 1;
+    print(isValid);
+    return isValid;
   }
   
   public void display() {
-    image(image, (x+1)*xWidth, (y+1)*yHeight, xWidth, yHeight);
+    image(image, (current.getXPos()+1)*xWidth, (current.getYPos()+1)*yHeight, xWidth, yHeight);
+    print("X: " + current.getXPos() + " Y: " + current.getYPos() + "\n");
   }
   
   protected void move() {
     switch(dir) {
       case LEFT:
-        x -= 1;
+        current.setXPos(current.getXPos() - 1);
       break;
-
+      
       case UP:
-        y -= 1;
+        current.setYPos(current.getYPos() - 1);
       break;
 
       case RIGHT:
-        x += 1;
+        current.setXPos(current.getXPos() + 1);
       break;
 
       case DOWN:
-        y += 1;
+        current.setYPos(current.getYPos() + 1);
       break;
       
       default:
