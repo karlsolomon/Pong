@@ -1,0 +1,17 @@
+Mouse Maze:
+
+Two Major Components
+  1. Maze (Dylan)
+    Rules: Two Colors, Each line must begin on currently occupied point and end on unoccupied point, Lines made of same color points
+  2. Mouse (Karl/Myeongin)
+    Rule: Can't cross walls
+    a. Mouse A (Karl)
+      Rule: UniqueDirection Decision Process
+    b. Mouse B (Myeongin)
+      Rule: Unique Direction Decision Process
+      
+Main:
+Create Maze
+Race Mice
+Over N iterations Find out best mouse :)
+Winner Wins :)

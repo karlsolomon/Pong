@@ -22,6 +22,10 @@ public abstract class Mouse {
     directionOrder.add(Direction.DOWN);
   }
   
+  public Point getPosition() {
+    return new Point(x,y);
+  }
+  
   public Direction getDirection() {
     return this.dir;
   }
