@@ -1,5 +1,4 @@
-public class Maze { //<>// //<>// //<>// //<>// //<>//
-
+public class Maze {  //<>// //<>// //<>// //<>// //<>//
   int gap; 
   int width_openings;
   int startX,startY;
@@ -78,10 +77,10 @@ public class Maze { //<>// //<>// //<>// //<>// //<>//
           continue;
         makeNewLine(p,rnd); 
       }
-      for (Line line: lines) { //<>//
-         line.convertLineToGridBarrier(mousesPOV); 
-      } //<>//
-  
+      for (Line line: lines) { 
+         line.convertLineToGridBarrier(mousesPOV);  //<>//
+      } 
+   //<>//
   }
 
   public void makeNewLine(Point p,Random rnd) {
@@ -112,13 +111,13 @@ public class Maze { //<>// //<>// //<>// //<>// //<>//
         newX = p.getXPos() + gap; 
         newY = p.getYPos();
       }
- //<>//
-      if(isValidPoint(newX,newY)) 
+
+      if(isValidPoint(newX,newY))  //<>//
           isValid = true; 
       else 
         directions.remove(rInt); 
- //<>//
-      if(isValid) {
+ 
+      if(isValid) { //<>//
         Point newP = new Point(newX,newY);
         pointsAll.add(newP);
         lines.add(new Line(p,newP,gap));
@@ -141,12 +140,12 @@ public class Maze { //<>// //<>// //<>// //<>// //<>//
       if((newX == p.getXPos() && newY == p.getYPos()) || (outRange)) { 
  
         return false;
-      } //<>//
-    } 
+      } 
+    }  //<>//
 
     return true; 
-  } //<>//
-  public void display() {
+  } 
+  public void display() { //<>//
     for (Line line: lines) 
       line.display();
   }
@@ -161,9 +160,5 @@ public class Maze { //<>// //<>// //<>// //<>// //<>//
   public int getCellSize() { 
     return gap;
   }
-
-
-
-
 
 }
