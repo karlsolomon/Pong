@@ -12,7 +12,7 @@ public class Maze {   //<>//
 
   public Maze(int cellSize) {
     gap = cellSize; 
-    this.width_openings = cellSize*2;
+    this.width_openings = cellSize;
     startX = (int) random(cellSize,width-width_openings-cellSize);
     startX = startX - startX % cellSize;
     startY = height-cellSize;
@@ -20,11 +20,18 @@ public class Maze {   //<>//
     endX = endX - endX % cellSize;
     endY = cellSize;
     pointsAll = new ArrayList<Point>();
-    mousesPOV = new int[width/cellSize][width/cellSize][4];
-    for(int i = 0; i < width/cellSize; i++) {
-      for(int j = 0; j < width/cellSize; j ++) {
+    mousesPOV = new int[width/cellSize-2][width/cellSize-2][4];
+    for(int i = 0; i < width/cellSize-2; i++) {
+      for(int j = 0; j < width/cellSize-2; j ++) {
         for(int k = 0; k < 4; k++) {
-          mousesPOV[i][j][k] = 1;
+          int startXConv = this.getStart().getXPos(); 
+          int startYConv = this.getStart().getYPos(); 
+          int endXConv = this.getEnd().getXPos();
+          int endYConv = this.getEnd().getYPos();
+          boolean notStart = j != startXConv || i != startYConv || k != 3;
+          boolean notEnd = j != endXConv || i != endYConv || k != 1;
+          if (notStart && notEnd) 
+            mousesPOV[i][j][k] = 1;
         }
       }
     }
@@ -57,6 +64,9 @@ public class Maze {   //<>//
     
     while (xCounter != endX-step || yCounter != endY) {
 
+
+      points.add(new Point(xCounter,yCounter));
+      pointsAll.add(new Point(xCounter,yCounter));
       if (xCounter == endOfScreen) {
         xStep = 0; 
         yStep = 1;
@@ -65,8 +75,6 @@ public class Maze {   //<>//
         xStep = -1; 
         yStep = 0;
       }
-      points.add(new Point(xCounter,yCounter));
-      pointsAll.add(new Point(xCounter,yCounter));
       xCounter += xStep * step; 
       yCounter -= yStep * abs(step);
     }
@@ -97,13 +105,15 @@ public class Maze {   //<>//
   }
   
   public Point getStart() {
-    //TODO: in terms of MOUSEPOV indices
-    return new Point(20,20);
+    int x = startX/gap-1;
+    int y = startY/gap - 2;
+    return new Point(x,y);
   }
   
   public Point getEnd() {
-    //TODO: in terms of MOUSEPOV indices
-    return new Point(0,0);
+    int x = endX/gap-1; 
+    int y = endY/gap - 1;
+    return new Point(x,y);
   }
 
   public void makeNewLine(Point p,Random rnd) {
@@ -182,6 +192,21 @@ public class Maze {   //<>//
   }
   public int getCellSize() { 
     return gap;
+  }
+  public void printMousePOV() {
+    print("\tSTART: [" + startX + "," + startY + "] -> [" + this.getStart().getXPos() + "," + this.getStart().getYPos() + "]  END: [" + this.getEnd().getXPos() + "," + this.getEnd().getYPos() + "]");     
+    for (int j = 0; j < width/gap-2; j++) {
+      print("\n");
+      for (int i = 0; i < width/gap-2; i++) { 
+        print("\t");
+        print("[" + i + "," + j + ": [");
+        for (int dir = 0; dir < 4; dir++) { 
+          print(mousesPOV[j][i][dir] + ", ");
+        }
+       print("]");
+      }
+    }
+    
   }
 
 }
