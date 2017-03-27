@@ -30,10 +30,10 @@ class Line {
       x1 = (x1 / gap) - 1;
       x2 = x1;
       try {        
-        mousesPOV[x1][y1][3] = 0;
+        mousesPOV[y1][x1][3] = 0;
       } catch (ArrayIndexOutOfBoundsException e){}
       try {        
-        mousesPOV[x2][y2][1] = 0;
+        mousesPOV[y2][x2][1] = 0;
       } catch (ArrayIndexOutOfBoundsException e){}
       
     }
@@ -44,10 +44,10 @@ class Line {
       x1 = s.getXPos()/gap - 2; 
       x2 = x1 + 1;
        try {        
-        mousesPOV[x1][y1][2] = 0;
+        mousesPOV[y1][x1][2] = 0;
       } catch (ArrayIndexOutOfBoundsException e){}
       try {        
-        mousesPOV[x2][y2][0] = 0;
+        mousesPOV[y2][x2][0] = 0;
       } catch (ArrayIndexOutOfBoundsException e){}
     }
   }
