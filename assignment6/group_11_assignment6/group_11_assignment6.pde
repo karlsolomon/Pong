@@ -5,9 +5,14 @@ void setup() {
  maze = new Maze(20);
  maze.initializeFrame();
  maze.updateLines();
- //int rnd = new Random().nextInt(array.length);
+ maze.createMaze(); //<>//
+ 
 }
 
 void draw() {
   maze.display();
+}
+
+public enum Direction {
+    LEFT, UP, RIGHT, DOWN
 }
