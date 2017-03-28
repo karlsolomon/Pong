@@ -2,6 +2,7 @@ public abstract class Mouse {
   PImage image;
   Point end;
   Point current;
+  int numberOfMoves;
   private int[][][] maze;
   final int xWidth;
   final int yHeight;
@@ -9,6 +10,7 @@ public abstract class Mouse {
   public ArrayList<Direction> directionOrder;
   
   public Mouse(Point start, Point end, int movementSize, int[][][] maze, PImage image){
+    this.numberOfMoves = 0;
     this.xWidth = movementSize;
     this.yHeight = movementSize;
     this.current = start;
@@ -19,7 +21,7 @@ public abstract class Mouse {
     directionOrder = new ArrayList<Direction>();
     directionOrder.add(Direction.LEFT);
     directionOrder.add(Direction.UP);
-    directionOrder.add(Direction.LEFT);
+    directionOrder.add(Direction.RIGHT);
     directionOrder.add(Direction.DOWN);    
   }
   
@@ -35,27 +37,27 @@ public abstract class Mouse {
     return this.dir;
   }
   
+  abstract String toString();
+  
   protected void setDirection(Direction dir) {
     this.dir = dir;
   }
   
   protected boolean moveIsValid() {
-    boolean isValid = maze[current.getXPos()][current.getYPos()][directionOrder.indexOf(dir)] == 1;
-    print(". " + dir + " valid: " + isValid + "\t");
+    boolean isValid;
+    try {
+      isValid = maze[current.getYPos()][current.getXPos()][directionOrder.indexOf(dir)] == 1;
+    } catch (ArrayIndexOutOfBoundsException e) {
+      isValid = false;
+    }
     return isValid;
   }
   
   public void display() {
     image(image, (current.getXPos()+1)*xWidth, (current.getYPos()+1)*yHeight, xWidth, yHeight);
-    //pushMatrix();
-    //rotate(PI/8);
-    //translate((current.getXPos()+1)*xWidth, (current.getYPos()+1)*yHeight);
-    //image(image, 0, 0, xWidth, yHeight);
-    //popMatrix();
   }
   
-  protected void move() {    
-    print("\tFrom X: " + current.getXPos() + " Y: " + current.getYPos());
+  protected void move() {
     switch(dir) {
       case LEFT:
         current.setXPos(current.getXPos() - 1);
@@ -76,7 +78,10 @@ public abstract class Mouse {
       default:
         System.out.println("Error: Invalid Direction");
     }
-    
-    print("\tTo X: " + current.getXPos() + " Y: " + current.getYPos() + "\n");
+    numberOfMoves++;
+  }
+  
+  public int getNumberOfMoves() {
+    return numberOfMoves;
   }
 }

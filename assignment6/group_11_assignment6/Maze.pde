@@ -1,4 +1,4 @@
-public class Maze {   //<>//
+public class Maze {   //<>// //<>//
   int gap; 
   int width_openings;
   int startX,startY;
@@ -84,16 +84,16 @@ public class Maze {   //<>//
   public void createMaze() {
       badPoints = new ArrayList<Point>();
       Random rnd = new Random();
-      while(pointsAll.size() != badPoints.size()) {
-        int rInt = rnd.nextInt(pointsAll.size());
+      while(pointsAll.size() != badPoints.size()) { //<>//
+        int rInt = rnd.nextInt(pointsAll.size()); //<>//
         Point p = pointsAll.get(rInt); 
         if (badPoints.contains(p))
           continue;
         makeNewLine(p,rnd); 
       }
       for (Line line: lines) { 
-         line.convertLineToGridBarrier(mousesPOV);  //<>//
-      }    //<>//
+         line.convertLineToGridBarrier(mousesPOV); 
+      }
   }
   
   public int[][][] getMaze() {
@@ -135,12 +135,12 @@ public class Maze {   //<>//
       } else if (dir == Direction.DOWN) {
         newX = p.getXPos(); 
         newY = p.getYPos() + gap;
-
+ //<>//
       } else if (dir == Direction.LEFT) {
         newX = p.getXPos() - gap;
         newY = p.getYPos();
 
-      } else if (dir == Direction.RIGHT) {
+      } else if (dir == Direction.RIGHT) { //<>//
         newX = p.getXPos() + gap; 
         newY = p.getYPos();
       }
@@ -164,11 +164,11 @@ public class Maze {   //<>//
 
   }
 
-  public boolean isValidPoint(int newX, int newY) {
+  public boolean isValidPoint(int newX, int newY) { //<>//
     boolean xOutRange = newX > width-gap || newX < gap;  
     boolean yOutRange = newY > height-gap || newY < gap;
     boolean outRange = xOutRange || yOutRange;
-    for (Point p: pointsAll) {
+    for (Point p: pointsAll) { //<>//
 
       if((newX == p.getXPos() && newY == p.getYPos()) || (outRange)) { 
  
