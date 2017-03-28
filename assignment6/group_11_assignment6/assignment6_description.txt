@@ -1,0 +1,22 @@
+Project's Intended Simulation: 
+Two mice (one always goes left; the other always goes right) compete to complete a randomly generated maze.
+
+Classes: 
+	Maze: Maze creates the maze and generates the single path to the exit. Uses points and lines to make the maze. 
+	      It functions on two rules: An end point cannot coincide with another point, and every point within the maze must belong to a line.
+		
+	Mouse: The Mice function on three rules.
+		Both: Cannot cross over lines in the maze, and must always find a solution to the maze.
+		LeftMouse: Must go left if able.
+		RightMouse: Must go right if able.
+
+	Point: Used in constructing the maze and tracking mice movement. 
+	Line: Is composed of two points for the maze and also converts mazeCoords to mouseCoords.
+
+Unexpected Challenges: 
+	Debugging (all good now tho).
+
+Group Contributions: 
+	Karl Solomon: Mouse, LeftMouse, RightMouse, helped with Maze, Main
+	Dylan Kile: Maze, Point, Line 
+	Myeongin Oh: Part of Mouse

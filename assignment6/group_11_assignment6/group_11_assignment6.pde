@@ -11,7 +11,7 @@ void setup() {
  size(500,500);  
  maze = new Maze(25);
  maze.initializeFrame();
- maze.updateLines(); //<>// //<>//
+ maze.updateLines(); //<>//
  maze.createMaze();
  mouseMaze = maze.getMaze();
  spacing = maze.getSpacing();
