@@ -6,6 +6,7 @@ public abstract class Mouse {
   private int[][][] maze;
   final int xWidth;
   final int yHeight;
+  float rad;
   private Direction dir;
   public ArrayList<Direction> directionOrder;
   
@@ -54,24 +55,36 @@ public abstract class Mouse {
   }
   
   public void display() {
-    image(image, (current.getXPos()+1)*xWidth, (current.getYPos()+1)*yHeight, xWidth, yHeight);
+    updateMouse(rad);    
+  }
+  
+  public void updateMouse(float rad) {
+    pushMatrix();
+    translate(((current.getXPos()+1)*xWidth+xWidth/2), ((current.getYPos()+1)*yHeight+yHeight/2));
+    rotate(rad);
+    image(image, -xWidth/2, -yHeight/2, xWidth, yHeight);
+    popMatrix();
   }
   
   protected void move() {
     switch(dir) {
       case LEFT:
+        rad=PI/2;
         current.setXPos(current.getXPos() - 1);
       break;
       
       case UP:
+        rad=PI;
         current.setYPos(current.getYPos() - 1);
       break;
 
       case RIGHT:
+        rad=-PI/2;
         current.setXPos(current.getXPos() + 1);
       break;
 
       case DOWN:
+        rad=2*PI;
         current.setYPos(current.getYPos() + 1);
       break;
       
