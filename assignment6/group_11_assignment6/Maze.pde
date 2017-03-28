@@ -1,4 +1,4 @@
-public class Maze {   //<>// //<>//
+public class Maze {     //<>//
   int gap; 
   int width_openings;
   int startX,startY;
@@ -84,16 +84,16 @@ public class Maze {   //<>// //<>//
   public void createMaze() {
       badPoints = new ArrayList<Point>();
       Random rnd = new Random();
-      while(pointsAll.size() != badPoints.size()) { //<>//
-        int rInt = rnd.nextInt(pointsAll.size()); //<>//
+      while(pointsAll.size() != badPoints.size()) { 
+        int rInt = rnd.nextInt(pointsAll.size()); 
         Point p = pointsAll.get(rInt); 
         if (badPoints.contains(p))
           continue;
         makeNewLine(p,rnd); 
       }
       for (Line line: lines) { 
-         line.convertLineToGridBarrier(mousesPOV); 
-      }
+         line.convertLineToGridBarrier(mousesPOV);  //<>//
+      } //<>//
   }
   
   public int[][][] getMaze() {
@@ -135,22 +135,22 @@ public class Maze {   //<>// //<>//
       } else if (dir == Direction.DOWN) {
         newX = p.getXPos(); 
         newY = p.getYPos() + gap;
- //<>//
+ 
       } else if (dir == Direction.LEFT) {
         newX = p.getXPos() - gap;
         newY = p.getYPos();
 
-      } else if (dir == Direction.RIGHT) { //<>//
+      } else if (dir == Direction.RIGHT) { 
         newX = p.getXPos() + gap; 
         newY = p.getYPos();
       }
 
-      if(isValidPoint(newX,newY))  //<>//
+      if(isValidPoint(newX,newY))   //<>//
           isValid = true; 
       else 
         directions.remove(rInt); 
  
-      if(isValid) { //<>//
+      if(isValid) { //<>// //<>//
         Point newP = new Point(newX,newY);
         pointsAll.add(newP);
         lines.add(new Line(p,newP,gap));
@@ -174,11 +174,11 @@ public class Maze {   //<>// //<>//
  
         return false;
       } 
-    }  //<>//
+    }  //<>// //<>//
 
     return true; 
   } 
-  public void display() { //<>//
+  public void display() {  //<>//
     for (Line line: lines) 
       line.display();
   }
@@ -192,21 +192,6 @@ public class Maze {   //<>// //<>//
   }
   public int getCellSize() { 
     return gap;
-  }
-  public void printMousePOV() {
-    print("\tSTART: [" + startX + "," + startY + "] -> [" + this.getStart().getXPos() + "," + this.getStart().getYPos() + "]  END: [" + this.getEnd().getXPos() + "," + this.getEnd().getYPos() + "]");     
-    for (int j = 0; j < width/gap-2; j++) {
-      print("\n");
-      for (int i = 0; i < width/gap-2; i++) { 
-        print("\t");
-        print("[" + i + "," + j + ": [");
-        for (int dir = 0; dir < 4; dir++) { 
-          print(mousesPOV[j][i][dir] + ", ");
-        }
-       print("]");
-      }
-    }
-    
   }
 
 }
