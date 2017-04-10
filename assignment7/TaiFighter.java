@@ -17,10 +17,10 @@ public class TaiFighter extends Ship {
 	}
 	public void display(int frame) {
 		PImage img = loadImage("explosion" + frame +".png"); 
-		image(img, xPos, yPos);
+		image(img, super.getXPos, super.getYPos);
 	}
 	public void shoot() {
-		Bullet b = new Bullet(super.getXPos(),super.getYPos()); 
+		Bullet b = new Bullet(super.getXPos(),super.getYPos(),Direction.DOWN); 
 		Bullet.getBullets().add(b);	
 	}
 
