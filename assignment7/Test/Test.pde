@@ -63,6 +63,7 @@ void draw() {
     if(!user.isAlive()) {
       noLoop();
       print("GAME OVER");
+      gameoverScreen();
     }
   }
 }
@@ -103,6 +104,22 @@ void pauseScreen (){
   fill(#1CD332);
   textSize(25);
   text("Press  P  to  Resume",250,450);
+}
+
+void gameoverScreen(){
+  background(0);
+  ene.resize(150,150);
+  ship.resize(200,200);
+  image(ship,150,190);
+  image(ene,40,140);
+  image(ene,310,140);
+  textFont(font);
+  textAlign(CENTER);
+  fill(255);
+  textSize(60);
+  text("GAMEOVER",250,110);
+  fill(#1CD332);
+  textSize(25);
 }
 
 void keyPressed() {
