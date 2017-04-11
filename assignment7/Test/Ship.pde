@@ -55,6 +55,7 @@ public abstract class Ship {
       
     if (withinSpace && differentTypes(b)) {
       println("BAM");
+      //loseLife = true;
       destroyShip();
       Statics.inactiveBullets.add(b);
     }
@@ -65,7 +66,7 @@ public abstract class Ship {
   }
   
   public void destroyShip() {
-    lives -= 1; 
+    lives -= 1;
     if (lives == 0) alive = false;
   }
   public boolean isAlive() {
@@ -86,7 +87,9 @@ public abstract class Ship {
   public boolean explosionOver() {
     return killFrame > 2; 
   }
-  
+  public int getLives() {
+    return lives;
+  }
 }
 
 public enum Direction {LEFT,RIGHT,DOWN,UP};

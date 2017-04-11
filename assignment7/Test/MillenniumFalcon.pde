@@ -5,7 +5,7 @@ public class MillenniumFalcon extends Ship {
   Timer bulletDelay;
   boolean ultActive;
   public MillenniumFalcon (int xPos, int yPos, int speed) {
-    super(xPos,yPos,speed,3);
+    super(xPos,yPos,speed,Statics.lives);
     float shipWidth = Ship.shipWidth; 
     float shipHeight = Ship.shipHeight;
     ultActive = false;
@@ -17,10 +17,12 @@ public class MillenniumFalcon extends Ship {
 
   }
   public void display() {
+    gui.display(Statics.killCount*200,super.getLives());
     pushMatrix(); 
     translate(super.getXPos(),super.getYPos());
     shape(ship);
     popMatrix();
+    
   }
   public void display(int frame) {
     PImage img = loadImage("explosion" + frame + ".png");

@@ -94,7 +94,7 @@ class Wave {
       }
     }
     Statics.enemies.removeAll(recentlyDeadEnemies);
-    totalEnemiesKilled += recentlyDeadEnemies.size();
+    Statics.killCount += recentlyDeadEnemies.size();
     deadEnemies.addAll(recentlyDeadEnemies);
     recentlyDeadEnemies = new ArrayList<Ship>();
     for(Ship i : deadEnemies) {
