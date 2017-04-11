@@ -17,10 +17,12 @@ public class MillenniumFalcon extends Ship {
 
   }
   public void display() {
+    gui.display();
     pushMatrix(); 
     translate(super.getXPos(),super.getYPos());
     shape(ship);
     popMatrix();
+    
   }
   public void display(int frame) {
     PImage img = loadImage("explosion" + frame + ".png");
