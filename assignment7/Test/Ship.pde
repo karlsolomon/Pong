@@ -46,7 +46,7 @@ public abstract class Ship {
   }
 
 
-   public void bulletTouching(Bullet b) { //<>//
+   public void bulletTouching(Bullet b) { //<>// //<>//
     boolean withinLeft = b.getX() >= x; 
     boolean withinRight = b.getX() <= x + Ship.shipWidth; 
     boolean withinTop = b.getY() >= y; 
@@ -96,6 +96,9 @@ public abstract class Ship {
   }
   protected void setInvulnerability(boolean state) {
     invulnerable = state;
+  }
+  public int getLives() {
+    return lives;
   }
 }
 

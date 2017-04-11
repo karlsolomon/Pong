@@ -6,7 +6,7 @@ public class MillenniumFalcon extends Ship {
   boolean ultAvailable;
   boolean ultActive;
   public MillenniumFalcon (int xPos, int yPos, int speed) {
-    super(xPos,yPos,speed,100);
+    super(xPos,yPos,speed,Statics.lives);
     float shipWidth = Ship.shipWidth; 
     float shipHeight = Ship.shipHeight;
     ultAvailable = true;
@@ -19,6 +19,8 @@ public class MillenniumFalcon extends Ship {
 
   }
   public void display() {
+    gui.display(Statics.killCount*200,super.getLives());
+
     if (this.isInvulnerable()) {
       ultAvailable = true;
       if (this.getInvulnerabilityTimer().isTime()) {
@@ -34,6 +36,7 @@ public class MillenniumFalcon extends Ship {
     translate(super.getXPos(),super.getYPos());
     shape(ship);
     popMatrix();
+    
   }
   public void display(int frame) {
     PImage img = loadImage("explosion" + frame + ".png");
