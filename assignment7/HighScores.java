@@ -16,8 +16,8 @@ static class ScoreParser{
 
 	static ArrayList<Score> getSortedScores() {
 		ArrayList<Score> allScores = new ArrayList<Score>(); 
-		while((String line = readLine()) != null {
-			Char[] name = line.split(" ")[0].toCharArray();
+		while((String line = readLine()) != null){
+			String name = line.split(" ")[0];
 			int score = Integer.parseInt(line.split(" ")[1]);
 			allScores.add(new Score(score, name));
 		}
@@ -28,13 +28,13 @@ static class ScoreParser{
 
 class Score implements Comparable {
 	int score;
-	Char[] name;
-	public Score(int score, Char[] name) {
+	String name;
+	public Score(int score, String name) {
 		this.score = score;
 		this.name = name;
 	}
 	public String toString() {
-		return new String(name) + " " + Integer.toString(score);
+		return name + " " + Integer.toString(score);
 	}
 	public String getName() {
 		return new String(name);
@@ -52,5 +52,24 @@ class Score implements Comparable {
 			compared = 0;
 		}
 		return compared;
+	}
+}
+
+
+//
+import javax.swing.*;
+public String getName(){
+	String name = "";  
+	try { 
+    UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
+  } 
+  catch (Exception e) { 
+    e.printStackTrace();
+  } 
+	while(true) { 
+		name = JOptionPane.showInputDialog(frame, "Enter Name (must be 3 characters):", "2");
+  		if(name.length == 3) {
+  			return name;
+  		}  
 	}
 }
