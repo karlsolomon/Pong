@@ -5,13 +5,14 @@ boolean pause = false;
 boolean run = false;
 Wave wave;
 GUI gui;
+int lives;
 
 PFont font;
 PImage ship;
 PImage ene;
 
 void setup() {
-  user = new MillenniumFalcon(250,450,10);
+  user = new MillenniumFalcon(250,height-Statics.bottomBuffer-40,10);
   size(500,500); 
   background(0); 
   inputs = new boolean[3]; 
