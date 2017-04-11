@@ -3,7 +3,7 @@ class Timer {
   int currentTime;
 
   Timer(int timeInterval) {
-    currentTime = 0; 
+    currentTime = millis(); 
     this.timeInterval = timeInterval;
     
   }
@@ -17,5 +17,8 @@ class Timer {
   }
   void toggle() { 
     currentTime = millis();  
+  }
+  public int timeLeft() {
+    return millis() - currentTime;  
   }
 }
