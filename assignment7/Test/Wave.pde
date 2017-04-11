@@ -10,12 +10,13 @@ class Wave {
   int yGap = enemyHeight;
   int ySpacing = enemyHeight*6/5;
   int speed = 1;
-  int numberOfSteps = cushion/speed;
+  int numberOfSteps = cushion/speed/2;
   int step = 0;
   private boolean isDone;
   Timer lateralTimer;
   Timer verticalTimer;
   Timer shootTimer;
+  Timer explosionTimer;
   ArrayList<Ship> deadEnemies;
   ArrayList<Ship> recentlyDeadEnemies;
 
@@ -25,6 +26,7 @@ class Wave {
     lateralTimer = new Timer(200);
     verticalTimer = new Timer(3000);
     shootTimer = new Timer(10000/Statics.waveDifficulty);
+    explosionTimer = new Timer(100);
     Statics.enemies = new ArrayList<Ship>();
     deadEnemies = new ArrayList<Ship>();
     recentlyDeadEnemies = new ArrayList<Ship>();
@@ -33,21 +35,14 @@ class Wave {
 
   private void initializeEnemySpacing(int difficulty) {
     speed *=2;
-    int gap = 0;
-    int rows = 0;
     int maxEnemiesPerRow = (width-2*cushion)/Ship.shipWidth;
     int workingHeight = height - (Statics.topBuffer + Statics.bottomBuffer);
     int maxRows = workingHeight/ySpacing/2;
     int numberOfEnemies = difficulty;
     numberOfEnemies = constrain(numberOfEnemies, 1, maxEnemiesPerRow*maxRows);    
-    int numberOfRows = numberOfEnemies/maxEnemiesPerRow; //<>//
+    int numberOfRows = numberOfEnemies/maxEnemiesPerRow; //<>// //<>//
     numberOfRows = constrain(numberOfRows, 1, maxRows);
-    print("numRows: " + numberOfRows);
-    print("maxRows: " + maxRows);
-    print("numEnemies: " + numberOfEnemies);
-    print("maxEnemiesPerRow: " + maxEnemiesPerRow);
     int enemiesPerRow = numberOfEnemies/numberOfRows;
-    print("enemiesPerRow: " + enemiesPerRow);
     int row = 0;
     while(numberOfEnemies > maxEnemiesPerRow) {
       for(int i = 0; i < maxEnemiesPerRow; i++) {
@@ -83,7 +78,10 @@ class Wave {
   }
 
   public void shoot() {
+    try {
     Statics.enemies.get((int) random(0,Statics.enemies.size())).shoot();
+    }
+    catch (IndexOutOfBoundsException e){}
   }
   
   public void doLateralStep() {
@@ -97,9 +95,6 @@ class Wave {
     totalEnemiesKilled += recentlyDeadEnemies.size();
     deadEnemies.addAll(recentlyDeadEnemies);
     recentlyDeadEnemies = new ArrayList<Ship>();
-    for(Ship i : deadEnemies) {
-      i.incrementKillFrame();
-    }
     for(Ship i : Statics.enemies) {
       if(step/numberOfSteps % 2 == 0) {
         i.move(Direction.RIGHT);

@@ -1,14 +1,14 @@
-//Need to implement kills and explosion, shooting, score
 public abstract class Ship {
   private int x; 
   private int y; 
   private int speed;
   private boolean alive; 
-  private int lives;
-  private int killFrame;
-  boolean isExploding;
+  private int lives; 
+  boolean invulnerable;
   public static final int shipWidth = 40; 
   public static final int shipHeight = 40;
+  Timer invulnerabilityTimer;
+  protected boolean ultAvailable;
 
   Ship(int xPos, int yPos, int speed, int lives) {
     x = xPos; 
@@ -16,8 +16,8 @@ public abstract class Ship {
     this.speed = speed; 
     this.lives = lives;
     alive = true; 
-    killFrame = 0;
-    isExploding = false;
+    invulnerable = false;
+    ultAvailable = false;
   }
   
   abstract boolean isUserShip();
@@ -53,8 +53,7 @@ public abstract class Ship {
     boolean withinBottom = b.getY() <= y + Ship.shipHeight; 
     boolean withinSpace = withinLeft && withinRight && withinTop && withinBottom; 
       
-    if (withinSpace && differentTypes(b)) {
-      println("BAM");
+    if (withinSpace && differentTypes(b) && !invulnerable) {
       destroyShip();
       Statics.inactiveBullets.add(b);
     }
@@ -65,8 +64,14 @@ public abstract class Ship {
   }
   
   public void destroyShip() {
-    lives -= 1; 
+    lives -= 1;
     if (lives == 0) alive = false;
+    if (alive) {
+      ultAvailable = true;
+      x = 250;
+      invulnerable = true;
+      invulnerabilityTimer = new Timer(1000);
+    }
   }
   public boolean isAlive() {
     return alive; 
@@ -77,16 +82,21 @@ public abstract class Ship {
   protected int getYPos() {
     return y;
   }
-  public int getKillFrame() {
-    return killFrame;
+  protected void setXPos(int newX) {
+    x =  newX;
   }
-  public void incrementKillFrame() {
-    killFrame += 1; 
+  protected void setYPos(int newY) {
+    y = newY; 
   }
-  public boolean explosionOver() {
-    return killFrame > 2; 
+  protected Timer getInvulnerabilityTimer() {
+    return invulnerabilityTimer;
   }
-  
+  protected boolean isInvulnerable() {
+    return invulnerable; 
+  }
+  protected void setInvulnerability(boolean state) {
+    invulnerable = state;
+  }
 }
 
 public enum Direction {LEFT,RIGHT,DOWN,UP};

@@ -3,11 +3,13 @@ public class MillenniumFalcon extends Ship {
   protected PShape ship;
   Timer ult;
   Timer bulletDelay;
+  boolean ultAvailable;
   boolean ultActive;
   public MillenniumFalcon (int xPos, int yPos, int speed) {
-    super(xPos,yPos,speed,3);
+    super(xPos,yPos,speed,100);
     float shipWidth = Ship.shipWidth; 
     float shipHeight = Ship.shipHeight;
+    ultAvailable = true;
     ultActive = false;
     ship = createShape(RECT,0,0,shipWidth,shipHeight);
     PImage img = loadImage("ship.png");
@@ -17,6 +19,17 @@ public class MillenniumFalcon extends Ship {
 
   }
   public void display() {
+    if (this.isInvulnerable()) {
+      ultAvailable = true;
+      if (this.getInvulnerabilityTimer().isTime()) {
+        this.setInvulnerability(false);
+      }
+    }
+    if (ultActive) {
+      if (ult.isTime()) {
+        ultActive = false;
+      }
+    }
     pushMatrix(); 
     translate(super.getXPos(),super.getYPos());
     shape(ship);
@@ -24,6 +37,7 @@ public class MillenniumFalcon extends Ship {
   }
   public void display(int frame) {
     PImage img = loadImage("explosion" + frame + ".png");
+    img.resize(shipWidth,shipHeight);
     image(img,super.getXPos(),super.getYPos());
   }
   public void shoot() {
@@ -39,9 +53,21 @@ public class MillenniumFalcon extends Ship {
       Statics.bullets.add(b);
     }
   }
-  public void toggleUlt() {
-    ultActive = !ultActive;
+  public boolean isUltAvailable() {
+    return ultAvailable; 
   }
+  public boolean isUltActive() {
+   return ultActive; 
+  }
+  public void setUltActivity(boolean state) {
+    ultActive = state;
+    if (state){
+      ult = new Timer(5000);
+      ultAvailable = false;
+    }
+  }
+    
+
   public boolean withinLeft() {
       return super.getXPos() > 0; 
   }

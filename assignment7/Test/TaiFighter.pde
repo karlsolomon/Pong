@@ -18,6 +18,7 @@ public class TaiFighter extends Ship {
   }
   public void display(int frame) {
     PImage img = loadImage("explosion" + frame +".png"); 
+    img.resize(shipWidth,shipHeight);
     image(img, super.getXPos(), super.getYPos());
   }
   public void shoot() {

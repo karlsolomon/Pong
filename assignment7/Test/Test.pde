@@ -63,8 +63,8 @@ void keyReleased() {
   if (key == ' ') {
     inputs[0] = false;
   }
-   if (key == 'r') {
-    user.toggleUlt();
+   if (key == 'r' && user.isUltAvailable()) {
+    user.setUltActivity(true);
   }
   if (key == 'a') {
     inputs[1]  = false;
