@@ -1,0 +1,8 @@
+Part 2: Unique Visualization (Dylan Kile) 
+
+There are six classes: Planet, Planets, GUI, Button, Timer and main
+Planet is an object that has a mass, eccentricity and period. The class allows for the display and change in a planet's orbit. 
+Planets is a class that maintains all the planets, allowing for simultaneous display and movement of all the planets. 
+Timer is used to delay the speed at which a time step occurs (currently set at 100 milliseconds). 
+Button is used to create interactivity allowing the user to select which planet is displayed, as well as change the page of planets the user is looking at. 
+GUI shows all the necessary buttons and allows the user to interact with the buttons. 
