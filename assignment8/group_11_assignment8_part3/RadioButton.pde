@@ -11,7 +11,7 @@ class RadioButton{
   public RadioButton(String name, int index) {
     this.index = index;
     this.x = width - Article.legendWidth;
-    this.y = height - Article.buttonHeight*(index+2);
+    this.y = height - Article.buttonHeight*(index+2); //<>//
     this.h = Article.buttonHeight;
     this.w = Article.legendWidth;
     setText(name);

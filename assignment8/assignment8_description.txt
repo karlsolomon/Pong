@@ -13,3 +13,12 @@ Button is used to create interactivity allowing the user to select which planet 
 GUI shows all the necessary buttons and allows the user to interact with the buttons. 
 A complication is that sometimes it requires multiple clicks to actually activate the button.
 
+Part 3: RSS Reader (Karl Solomon)
+
+There are six classes: Article, ArticleLegend, Button, Feed, RadioButton, Main.
+Article - Has a button that when clicked will open article url in web browser. Hovering will show the article's source/timestamp.
+ArticleLegend - The "web pages" where articles are derived from. Shows the color-scheme of articles.
+Button - Handles simple mouse hovering, clicking, color, and text
+Feed - A unique RSS feed that the user can select to view. ****I elected to use a scroll view for previous/next functionality since I find this more user-friendly and cleaner.
+RadioButton - Button that only allows selection of one feed at a time
+Main - Sets up GUI container for the feed, article legend, and feed description at the top of the file 

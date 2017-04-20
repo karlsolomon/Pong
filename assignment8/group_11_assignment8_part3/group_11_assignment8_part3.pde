@@ -24,7 +24,7 @@ void setup() {
     pages.add(new RadioButton(feed.getName(), feeds.indexOf(feed)));
   }
   
-}
+} //<>//
 
 void draw() {
   background(0);
@@ -49,7 +49,7 @@ void mouseClicked(MouseEvent event) {
 }
 
 void mouseWheel(MouseEvent event){
-  if((activeFeed.getTopOfTable() >= 30 && event.getCount() > 0) || (activeFeed.getBottomOfTable() <= height) && event.getCount() < 0) {
+  if((activeFeed.getTopOfTable() >= 0 && event.getCount() > 0) || (activeFeed.getBottomOfTable() <= height) && event.getCount() < 0) {
     return;  //prevent from moving up/down into button space
   }
   topIndex += event.getCount();
