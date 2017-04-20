@@ -1,3 +1,8 @@
+Part 1: Bar or Line Graph (Myeongnin)
+
+Using csv data file of Eye and Hair color, created bar and line graph.
+It initailly creates bar graph and by clicking a box "switch to line graph", it changes to line graph.
+
 Part 2: Unique Visualization (Dylan Kile) 
 
 There are six classes: Planet, Planets, GUI, Button, Timer and main
@@ -7,3 +12,4 @@ Timer is used to delay the speed at which a time step occurs (currently set at 1
 Button is used to create interactivity allowing the user to select which planet is displayed, as well as change the page of planets the user is looking at. 
 GUI shows all the necessary buttons and allows the user to interact with the buttons. 
 A complication is that sometimes it requires multiple clicks to actually activate the button.
+

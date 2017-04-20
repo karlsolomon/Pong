@@ -1,3 +1,8 @@
+Part 1: Bar or Line Graph:
+Click Run
+To see line graph, click a box on the right corner that says "switch to line graph"
+To switch back, just click again.
+
 Part 2: Unique Visualization: 
 Click Run 
 To have a planet show up, click the button corresponding to a planet. 
