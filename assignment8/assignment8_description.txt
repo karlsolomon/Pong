@@ -6,3 +6,4 @@ Planets is a class that maintains all the planets, allowing for simultaneous dis
 Timer is used to delay the speed at which a time step occurs (currently set at 100 milliseconds). 
 Button is used to create interactivity allowing the user to select which planet is displayed, as well as change the page of planets the user is looking at. 
 GUI shows all the necessary buttons and allows the user to interact with the buttons. 
+A complication is that sometimes it requires multiple clicks to actually activate the button.
