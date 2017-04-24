@@ -1,0 +1,54 @@
+Reference: http://www.sudokuessentials.com/create-sudoku.html
+Notes: 
+	How to make the puzzle:
+	1. Create the solution
+	2. Remove Mirror Pairs
+	3. Test for Single Solution
+
+	Rules while playing:
+	1. can't play two of the same character in the same row/column/group
+	2. play one character at a time.
+
+	Do we want to add Tips/Hints?
+
+	
+
+
+
+
+// brainstorming, this is all up for debate/scrutiny
+// I'm debating doing a Group/Row/Column system vs. just a Group that would "act" like all three
+// It would be easier to read if we did the triad, but it would be redundant w/in the classes themselves
+
+Classes:
+	+ SudokuGrid
+		+ init(int size)
+		- SudokuRow[size] rows
+		- SudokuColumn[size] columns
+		- SudokuGroup[size] groups
+		+ boolean validGrid
+			- bool validRow(SudokuRow row)
+			- validColumn(SudokuColumn column)
+			- validGroup(SudokuGroup group)
+			- onlyOneSolution() // no mirror pairs
+		+ boolean isSolved
+	+ SudokuCell
+		+ init(PImage, char)
+		+ getImage
+		+ char getValue()
+		+ boolean isValue()
+	+ SudokuGroup
+		+init(int size)
+		- SudokuCell[Math.sqrt(size)][Math.sqrt(size)]
+		+ boolean contains(SudokuCell)
+	+ SudokuRow
+		+ init(int size)
+		- SudokuCell[size]
+		+ boolean contains(SudokuCell)
+	+ SudokuColumn
+		+ init(int size)
+		- SudokuCell[size]
+		+ boolean contains(SudokuCell) 
+		
+		
+	
